@@ -1,15 +1,38 @@
 import React from 'react'
-import { node } from 'prop-types'
+import { string, node, func } from 'prop-types'
+
+import './Button.scss'
 
 Button.propTypes = {
-    children: node
+    as: string,
+    id: string,
+    children: node,
+    onClick: func,
+    className: string,
 }
 
 function Button({
-    children
+    id = null,
+    as = "button",
+    children,
+    onClick = null,
+    className = "",
+
 }) {
-    return (
-        <button>{children}</button>
+
+    className = [
+        "button",
+        className
+    ].join(" ").trim()
+
+    return React.createElement(
+        as,
+        {
+            id,
+            className,
+            onClick,
+        },
+        children
     )
 }
 

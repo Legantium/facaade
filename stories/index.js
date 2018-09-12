@@ -9,6 +9,5 @@ import {
 storiesOf('Button', module)
 
     .add('with text', () => (
-        <Button>Button Label</Button>
-
+        <Button onClick={action('clicked')}>Button Label</Button>
     ))
