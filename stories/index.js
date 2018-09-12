@@ -10,4 +10,5 @@ storiesOf('Button', module)
 
     .add('with text', () => (
         <Button>Button Label</Button>
+
     ))
