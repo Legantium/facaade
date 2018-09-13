@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/index.jsx',
+    entry: './src/index.js',
     output: {
         path: path.resolve('dist'),
-        filename: 'bundle.js',
+        filename: 'main.js',
         libraryTarget: 'commonjs2'
     },
     module: {
