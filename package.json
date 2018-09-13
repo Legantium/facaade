@@ -2,7 +2,7 @@
   "name": "facaade",
   "version": "0.2.0",
   "description": "a style agnostic react component library",
-  "main": "./dist/index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "npm test -- -w",
