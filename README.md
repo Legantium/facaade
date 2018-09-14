@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Legantium/facaade.svg?branch=master)](https://travis-ci.org/Legantium/facaade)
 [![Coverage Status](https://coveralls.io/repos/github/Legantium/facaade/badge.svg?branch=master)](https://coveralls.io/github/Legantium/facaade?branch=master)
 
-# FACAADE #
+# Facaade #
 A style agnostic react component library
 
 ## Getting started ##
