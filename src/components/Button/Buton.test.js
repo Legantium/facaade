@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
-import Button from './Button'
+import Button from './'
 
 describe("<Button>", () => {
 
