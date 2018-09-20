@@ -24,13 +24,13 @@ describe("<Button>", () => {
     })
 
     it("className", () => {
-        const c = shallow(<Button className="my-custom-button">ButtonLabel</Button>)
-        expect(c.exists("button.button.my-custom-button")).toBeTruthy()
+        const c = shallow(<Button className="custom-class">ButtonLabel</Button>)
+        expect(c.exists(".custom-class")).toBeTruthy()
     })
 
     it("id", () => {
-        const c = shallow(<Button id="button-1">ButtonLabel</Button>)
-        expect(c.exists("button#button-1")).toBeTruthy()
+        const c = shallow(<Button id="id">ButtonLabel</Button>)
+        expect(c.exists("#id")).toBeTruthy()
     })
 
 })

@@ -5,6 +5,7 @@ import {
     bool,
     node,
     oneOf,
+    object
 } from 'prop-types'
 
 import './Button.scss'
@@ -12,6 +13,9 @@ import './Button.scss'
 /**
  * @name Button
  * @desc button element
+ * @example
+ *      -> <Button className="my-button">My Button</Button>
+ *      <- <button class="Button my-button">My Button</button>
  */
 
 Button.propTypes = {
@@ -24,6 +28,7 @@ Button.propTypes = {
     onMouseOver: func,
     disabled: bool,
     className: string,
+    style: object,
     id: string,
     name: string,
     type: oneOf(["button", "reset", "submit"]),
@@ -45,11 +50,12 @@ function Button({
     id = null,
     name = null,
     type = null,
+    style = null,
     children
 }) {
 
     className = [
-        "button",
+        "Button",
         className
     ].join(" ").trim()
 
@@ -67,7 +73,8 @@ function Button({
             onMouseOut,
             disabled,
             name,
-            type
+            type,
+            style,
         },
         children
     )

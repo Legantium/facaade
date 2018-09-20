@@ -1,7 +1,7 @@
 {
   "name": "facaade",
   "version": "0.2.12",
-  "description": "a style agnostic react component library",
+  "description": "A style agnostic react component library",
   "main": "./dist/index.js",
   "scripts": {
     "start": "npm run dev",

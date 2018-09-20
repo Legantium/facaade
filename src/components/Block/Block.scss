@@ -1,0 +1,88 @@
+.Block {
+    
+    display: flex;
+    max-width: 100%;
+
+    // xs    
+    &.hide-xs { display: none; }
+    @for $i from 1 through 16 {
+        &.xs-#{$i} {
+            width: 100% / 16 * $i;
+        }
+    }
+
+    // sm
+    @media all and (min-width: 480px) {
+        
+        &.hide-sm { display: none; }
+        &.hide-xs:not([class^="sm-"]) { display: none; }
+        
+        @for $i from 1 through 16 {
+            &.sm-#{$i} {
+                width: 100% / 16 * $i;
+            }
+        }
+    }
+
+    // md
+    @media all and (min-width: 736px) {
+    
+        &.md-0 { display: none; }
+        &.hide-sm:not([class^="md-"]) { display: none; }
+        &.hide-xs:not([class^="md-"]):not([class^="sm-"]) { display: none; }
+        
+        @for $i from 1 through 16 {
+            &.md-#{$i} {
+                width: 100% / 16 * $i;
+            }
+        }
+    }
+
+    // lg
+    @media all and (min-width: 980px) {
+        
+        &.lg-0 { display: none; }
+        &.hide-md:not([class^="lg-"]) { display: none; }
+        &.hide-sm:not([class^="lg-"]):not([class^="md-"]) { display: none; }
+        &.hide-xs:not([class^="lg-"]):not([class^="md-"]):not([class^="sm-"]) { display: none; }
+
+        @for $i from 1 through 16 {
+            &.lg-#{$i} {
+                width: 100% / 16 * $i;
+            }
+        }
+    }
+
+    // xl
+    @media all and (min-width: 1280px) {
+        
+        &.xl-0 { display: none; }
+        &.hide-lg:not([class^="xl"]) { display: none; }
+        &.hide-md:not([class^="xl"]):not([class^="lg-"]) { display: none; }
+        &.hide-sm:not([class^="xl"]):not([class^="lg-"]):not([class^="md-"]) { display: none; }
+        &.hide-xs:not([class^="xl"]):not([class^="lg-"]):not([class^="md-"]):not([class^="sm-"]) { display: none; }
+        
+        @for $i from 1 through 16 {
+            &.xl-#{$i} {
+                width: 100% / 16 * $i;
+            }
+        }
+    }
+
+    // xxl
+    @media all and (min-width: 1690px) {
+        
+        &.xxl-0 { display: none; }
+        &.hide-xl:not([class^="xxl"]) { display: none; }
+        &.hide-lg:not([class^="xxl"]):not([class^="xl-"]) { display: none; }
+        &.hide-md:not([class^="xxl"]):not([class^="xl-"]):not([class^="lg-"]) { display: none; }
+        &.hide-sm:not([class^="xxl"]):not([class^="xl-"]):not([class^="lg-"]):not([class^="md-"]) { display: none; }
+        &.hide-xs:not([class^="xxl"]):not([class^="xl-"]):not([class^="lg-"]):not([class^="md-"]):not([class^="sm-"]) { display: none; }
+        
+        @for $i from 1 through 16 {
+            &.xxl-#{$i} {
+                width: 100% / 16 * $i;
+            }
+        }
+    }    
+}
