@@ -1,14 +1,8 @@
 import React from 'react'
-import {
-    string,
-    func,
-    bool,
-    node,
-    oneOf,
-    object
-} from 'prop-types'
 
-import './Button.scss'
+import { string, func, bool, node, oneOf, object } from 'prop-types'
+
+require('./Button.scss')
 
 /**
  * @name Button
