@@ -13,23 +13,23 @@ import {
 storiesOf('Button', module)
 
     .add('with text', () => (
-        <Button onClick={action('clicked')}>Button Label</Button>
+        <Button size="12px" rounded onClick={action('clicked')}>Button Label</Button>
     ))
 
 
 storiesOf("Block", module)
     .add("Single block", () => (
-        <Block style={{background: "none"}}>
-            <Block xs={16} smHide lg={16}>Content</Block>
+        <Block as="section" className="this-is-my-section">
+            This is my section
         </Block>
     ))
 
 storiesOf("TextInput", module)
-    .add("type:text", () => (<TextInput value="value" onChange={action("text input change")} className="custom-text-input" />))
-    .add("type:email", () => (<TextInput type="email" value="abc@domain.com" onChange={action("email input change")} />))
-    .add("type:password", () => (<TextInput type="password" value="nicetry" onChange={action("password input change")} />))
-    .add("type:number", () => (<TextInput type="number" value="123456789" onChange={action("number input change")} />))
-    .add("type:tel", () => (<TextInput type="tel" value="123456789" onChange={action("tel input change")} />))
+    .add("type:text", () => (<TextInput value="value" onChange={action("changed")} className="custom-text-input" />))
+    .add("type:email", () => (<TextInput type="email" value="abc@domain.com" onChange={action("changed")} />))
+    .add("type:password", () => (<TextInput type="password" value="nicetry" onChange={action("changed")} />))
+    .add("type:number", () => (<TextInput type="number" value="123456789" onChange={action("changed")} />))
+    .add("type:tel", () => (<TextInput type="tel" value="123456789" onChange={action("changed")} />))
 
 
 // storiesOf("Textarea", module)

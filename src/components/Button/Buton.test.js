@@ -6,31 +6,25 @@ import Button from './'
 describe("<Button>", () => {
 
     it("render", () => {
-        const c = shallow(<Button>ButtonLabel</Button>)
-        expect(c.exists("button")).toBeTruthy()
-        expect(c.text()).toEqual("ButtonLabel")
-    })
-
-    it("render as <a>", () => {
-        const c = shallow(<Button as="a">ButtonLabel</Button>)
-        expect(c.exists("a")).toBeTruthy()
+        const c = shallow(<Button>Button</Button>)
+        expect(c.find("button")).toBeTruthy()
     })
 
     it("onClick", () => {
         const onClick = sinon.spy()
-        const c = shallow(<Button onClick={onClick}>ButtonLabel</Button>)
-        c.find("button").simulate("click")
+        const c = shallow(<Button onClick={onClick}>Button</Button>)
+        c.simulate("click")
         expect(onClick.callCount).toBe(1)
     })
 
     it("className", () => {
-        const c = shallow(<Button className="custom-class">ButtonLabel</Button>)
-        expect(c.exists(".custom-class")).toBeTruthy()
+        const c = shallow(<Button className="custom-class">Button</Button>)
+        expect(c.find(".custom-class")).toBeTruthy()
     })
 
     it("id", () => {
-        const c = shallow(<Button id="id">ButtonLabel</Button>)
-        expect(c.exists("#id")).toBeTruthy()
+        const c = shallow(<Button id="button">Button</Button>)
+        expect(c.find("#block")).toBeTruthy()
     })
 
 })

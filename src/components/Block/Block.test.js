@@ -4,25 +4,24 @@ import Block from '.'
 
 describe("<Block>", () => {
 
-    it("render", () => {
-        const c = shallow(<Block>Content</Block>)
-        expect(c.exists("div")).toBeTruthy()
-        expect(c.text()).toEqual("Content")
+    it("render as default <div>", () => {
+        const c = shallow(<Block>Block</Block>)
+        expect(c.find("div")).toBeTruthy()
     })
 
     it("render as <section>", () => {
-        const c = shallow(<Block as="section">Content</Block>)
-        expect(c.exists("section")).toBeTruthy()
+        const c = shallow(<Block as="section">Block</Block>)
+        expect(c.find("section")).toBeTruthy()
     })
 
     it("className", () => {
-        const c = shallow(<Block className="custom-class">DivLabel</Block>)
-        expect(c.exists(".custom-class")).toBeTruthy()
+        const c = shallow(<Block className="custom-class">Block</Block>)
+        expect(c.find(".custom-class")).toBeTruthy()
     })
 
     it("id", () => {
-        const c = shallow(<Block id="id">DivLabel</Block>)
-        expect(c.exists("#id")).toBeTruthy()
+        const c = shallow(<Block id="block">Block</Block>)
+        expect(c.find("#block")).toBeTruthy()
     })
 
 })
