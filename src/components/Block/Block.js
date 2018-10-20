@@ -133,114 +133,85 @@ function Block({
 }
 
 const styledBlock = styled(Block)`
-    
-    min-height: 80px;
-    background: lightgrey;
-    display: ${({ hide, xsHide }) => !!hide || !!xsHide ? "none" : "flex"};
+
+    display: ${({ hide }) => !!hide ? "none" : "flex"};
     flex-basis: ${({ basis, xsBasis, xs }) => (!!xs && xs * 100 / 16 + "%") || xsBasis || basis || null};
     align-items: ${({ align, xsAlign }) => xsAlign || align || null};
-    justify - content: ${ ({ justify, xsJustify }) => xsJustify || justify || null};
-    flex - grow: ${ ({ grow, xsGrow }) => grow || xsGrow || null};
-    flex - shrink: ${ ({ shrink, xsShrink }) => shrink || xsShrink || null};
-    flex - direction: ${ ({ xsRow, row, xsColumn, column, xsRowReverse, rowReverse, xsColumnReverse, columnReverse }) => (!!xsRow || !!row && "row") || (!!xsColumn || !!column && "column") || (!!xsRowReverse || !!rowReverse && "row-reverse") || (!!xsColumnReverse || !!columnReverse && "row-reverse") || null};
+    justify-content: ${ ({ justify, xsJustify }) => xsJustify || justify || null};
+    flex-grow: ${ ({ grow, xsGrow }) => grow || xsGrow || null};
+    flex-shrink: ${ ({ shrink, xsShrink }) => shrink || xsShrink || null};
+    flex-direction: ${ ({ xsRow, row, xsColumn, column, xsRowReverse, rowReverse, xsColumnReverse, columnReverse }) => (!!xsRow || !!row && "row") || (!!xsColumn || !!column && "column") || (!!xsRowReverse || !!rowReverse && "row-reverse") || (!!xsColumnReverse || !!columnReverse && "row-reverse") || null};
     margin: ${ ({ xsMargin, margin }) => xsMargin || margin || null};
     padding: ${ ({ xsPadding, padding }) => xsPadding || padding || null};
 
     @media all and (min-width: ${breakpoints.xs}) {
-        display: ${({ hide, xsHide }) => !!xsHide || !!hide ? "none" : "flex"};
-        flex - basis: ${ ({ xsBasis, xs }) => (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-        align - items: ${ ({ xsAlign }) => xsAlign || null};
-        justify - content: ${ ({ xsJustify }) => xsJustify || null};
-        flex - grow: ${ ({ xsGrow }) => xsGrow || null};
-        flex - shrink: ${ ({ xsShrink }) => xsShrink || null};
-        flex - direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
+        display: ${({ xsHide, xs, xsBasis }) => !!xsHide ? "none" : (!!xs || !!xsBasis) ? "flex" : null};
+        flex-basis: ${ ({ xsBasis, xs }) => (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+        align-items: ${ ({ xsAlign }) => xsAlign || null};
+        justify-content: ${ ({ xsJustify }) => xsJustify || null};
+        flex-grow: ${ ({ xsGrow }) => xsGrow || null};
+        flex-shrink: ${ ({ xsShrink }) => xsShrink || null};
+        flex-direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
         margin: ${ ({ xsMargin }) => xsMargin || null};
         padding: ${ ({ xsPadding }) => xsPadding || null};
     }
 
 @media all and (min-width: ${breakpoints.sm}) {
-    border: 2px solid green;
-    display: ${({ hide, xsHide, smHide, sm, smBasis }) => (!!smHide || (!!hide || !!xsHide && !sm || !smBasis) ? "none" : "flex")};
-    flex - basis: ${ ({ smBasis, sm, xsBasis, xs }) => (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-    align - items: ${ ({ smAlign }) => smAlign || null};
-    justify - content: ${ ({ smJustify }) => smJustify || null};
-    flex - grow: ${ ({ smGrow }) => smGrow || null};
-    flex - shrink: ${ ({ smShrink }) => smShrink || null};
-    flex - direction: ${ ({ smRow, smColumn, smRowReverse, smColumnReverse }) => (!!smRow && "row") || (!!smColumn && "column") || (!!smRowReverse && "row-reverse") || (!!smColumnReverse && "row-reverse") || null};
+    display: ${({ smHide, sm, smBasis }) => !!smHide ? "none" : (!!sm || !!smBasis) ? "flex" : null};
+    flex-basis: ${ ({ smBasis, sm, xsBasis, xs }) => (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+    align-items: ${ ({ smAlign }) => smAlign || null};
+    justify-content: ${ ({ smJustify }) => smJustify || null};
+    flex-grow: ${ ({ smGrow }) => smGrow || null};
+    flex-shrink: ${ ({ smShrink }) => smShrink || null};
+    flex-direction: ${ ({ smRow, smColumn, smRowReverse, smColumnReverse }) => (!!smRow && "row") || (!!smColumn && "column") || (!!smRowReverse && "row-reverse") || (!!smColumnReverse && "row-reverse") || null};
     margin: ${ ({ smMargin }) => smMargin || null};
     padding: ${ ({ smPadding }) => smPadding || null};
 }
 
 @media all and (min-width: ${breakpoints.md}) {
-    display: ${({ hide, xsHide, smHide, mdHide, sm, smBasis, md, mdBasis }) => (
-        !!mdHide ||
-            (!!smHide && !md || !mdBasis) ||
-            (!!hide || !!xsHide && !sm || !smBasis || !md || !mdBasis)
-            ? "none" : "flex"
-    )};
-    flex - basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis }) => (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-    align - items: ${ ({ mdAlign }) => mdAlign || null};
-    justify - content: ${ ({ mdJustify }) => mdJustify || null};
-    flex - grow: ${ ({ mdGrow }) => mdGrow || null};
-    flex - shrink: ${ ({ mdShrink }) => mdShrink || null};
-    flex - direction: ${ ({ mdRow, mdColumn, mdRowReverse, mdColumnReverse }) => (!!mdRow && "row") || (!!mdColumn && "column") || (!!mdRowReverse && "row-reverse") || (!!mdColumnReverse && "row-reverse") || null};
+    display: ${({ mdHide, md, mdBasis }) => !!mdHide ? "none" : !!md || !!mdBasis ? "flex" : null};
+    flex-basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis }) => (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+    align-items: ${ ({ mdAlign }) => mdAlign || null};
+    justify-content: ${ ({ mdJustify }) => mdJustify || null};
+    flex-grow: ${ ({ mdGrow }) => mdGrow || null};
+    flex-shrink: ${ ({ mdShrink }) => mdShrink || null};
+    flex-direction: ${ ({ mdRow, mdColumn, mdRowReverse, mdColumnReverse }) => (!!mdRow && "row") || (!!mdColumn && "column") || (!!mdRowReverse && "row-reverse") || (!!mdColumnReverse && "row-reverse") || null};
     margin: ${ ({ mdMargin }) => mdMargin || null};
     padding: ${ ({ mdPadding }) => mdPadding || null};
 }
 
 @media all and (min-width: ${breakpoints.lg}) {
-    display: ${({ hide, xsHide, smHide, mdHide, lgHide, sm, smBasis, md, mdBasis, lg, lgBasis }) => (
-        !!lgHide ||
-            (!!mdHide && !lg && !lgBasis) ||
-            (!!smHide && !md && !mdBasis && !lg && !lgBasis) ||
-            (!!hide || !!xsHide && !sm && !smBasis && !md && !mdBasis && !lg && !lgBasis)
-            ? "none" : "flex"
-    )};
-    flex - basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis }) => (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-    align - items: ${ ({ lgAlign }) => lgAlign || null};
-    justify - content: ${ ({ lgJustify }) => lgJustify || null};
-    flex - grow: ${ ({ lgGrow }) => lgGrow || null};
-    flex - shrink: ${ ({ lgShrink }) => lgShrink || null};
-    flex - direction: ${ ({ lgRow, lgColumn, lgRowReverse, lgColumnReverse }) => (!!lgRow && "row") || (!!lgColumn && "column") || (!!lgRowReverse && "row-reverse") || (!!lgColumnReverse && "row-reverse") || null};
+    display: ${({ lgHide, lg, lgBasis }) => !!lgHide ? "none" : (!!lg || !!lgBasis) ? "flex" : null};
+    flex-basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis }) => (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+    align-items: ${ ({ lgAlign }) => lgAlign || null};
+    justify-content: ${ ({ lgJustify }) => lgJustify || null};
+    flex-grow: ${ ({ lgGrow }) => lgGrow || null};
+    flex-shrink: ${ ({ lgShrink }) => lgShrink || null};
+    flex-direction: ${ ({ lgRow, lgColumn, lgRowReverse, lgColumnReverse }) => (!!lgRow && "row") || (!!lgColumn && "column") || (!!lgRowReverse && "row-reverse") || (!!lgColumnReverse && "row-reverse") || null};
     margin: ${ ({ lgMargin }) => lgMargin || null};
     padding: ${ ({ lgPadding }) => lgPadding || null};
 }
 
 @media all and (min-width: ${breakpoints.xl}) {
-    display: ${({ hide, xsHide, smHide, mdHide, lgHide, xlHide, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis }) => (
-        !!xlHide ||
-            (!!lgHide && !xl && !xlBasis) ||
-            (!!mdHide && !lg && !lgBasis && !xl && !xlBasis) ||
-            (!!smHide && !md && !mdBasis && !lg && !lgBasis && !xl && !xlBasis) ||
-            (!!hide || !!xsHide && !sm && !smBasis && !md && !mdBasis && !lg && !lgBasis && !xl && !xlBasis)
-            ? "none" : "flex"
-    )};
-    flex - basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis }) => (!!xl && xl * 100 / 16 + "%") || xlBasis || (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-    align - items: ${ ({ xlAlign }) => xlAlign || null};
-    justify - content: ${ ({ xlJustify }) => xlJustify || null};
-    flex - grow: ${ ({ xlGrow }) => xlGrow || null};
-    flex - shrink: ${ ({ xlShrink }) => xlShrink || null};
-    flex - direction: ${ ({ xlRow, xlColumn, xlRowReverse, xlColumnReverse }) => (!!xlRow && "row") || (!!xlColumn && "column") || (!!xlRowReverse && "row-reverse") || (!!xlColumnReverse && "row-reverse") || null};
+    display: ${({ xlHide, xl, xlBasis }) => !!xlHide ? "none" : (!!xl || !!xlBasis) ? "flex" : null};
+    flex-basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis }) => (!!xl && xl * 100 / 16 + "%") || xlBasis || (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+    align-items: ${ ({ xlAlign }) => xlAlign || null};
+    justify-content: ${ ({ xlJustify }) => xlJustify || null};
+    flex-grow: ${ ({ xlGrow }) => xlGrow || null};
+    flex-shrink: ${ ({ xlShrink }) => xlShrink || null};
+    flex-direction: ${ ({ xlRow, xlColumn, xlRowReverse, xlColumnReverse }) => (!!xlRow && "row") || (!!xlColumn && "column") || (!!xlRowReverse && "row-reverse") || (!!xlColumnReverse && "row-reverse") || null};
     margin: ${ ({ xlMargin }) => xlMargin || null};
     padding: ${ ({ xlPadding }) => xlPadding || null};
 }
 
 @media all and (min-width: ${breakpoints.xxl}) {
-    display: ${({ hide, xsHide, smHide, mdHide, lgHide, xlHide, xxlHide, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis, xxl, xxlBasis }) => (
-        !!xxlHide ||
-            (!!xlHide && !xxl && !xxlBasis) ||
-            (!!lgHide && !xl && !xlBasis && !xxl && !xxlBasis) ||
-            (!!mdHide && !lg && !lgBasis && !xl && !xlBasis && !xxl && !xxlBasis) ||
-            (!!smHide && !md && !mdBasis && !lg && !lgBasis && !xl && !xlBasis && !xxl && !xxlBasis) ||
-            (!!hide || !!xsHide && !sm && !smBasis && !md && !mdBasis && !lg && !lgBasis && !xl && !xlBasis && !xxl && !xxlBasis)
-            ? "none" : "flex"
-    )};
-    flex - basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis, xxl, xxlBasis }) => (!!xxl && xxl * 100 / 16 + "%") || xxlBasis || (!!xl && xl * 100 / 16 + "%") || xlBasis || (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
-    align - items: ${ ({ xxlAlign }) => xxlAlign || null};
-    justify - content: ${ ({ xxlJustify }) => xxlJustify || null};
-    flex - grow: ${ ({ xxlGrow }) => xxlGrow || null};
-    flex - shrink: ${ ({ xxlShrink }) => xxlShrink || null};
-    flex - direction: ${ ({ xxlRow, xxlColumn, xxlRowReverse, xxlColumnReverse }) => (!!xxlRow && "row") || (!!xxlColumn && "column") || (!!xxlRowReverse && "row-reverse") || (!!xxlColumnReverse && "row-reverse") || null};
+    display: ${({ xxlHide, xxl, xxlBasis }) => !!xxlHide ? "none" : (!!xxl || !!xxlBasis) ? "flex" : null};
+    flex-basis: ${ ({ xs, xsBasis, sm, smBasis, md, mdBasis, lg, lgBasis, xl, xlBasis, xxl, xxlBasis }) => (!!xxl && xxl * 100 / 16 + "%") || xxlBasis || (!!xl && xl * 100 / 16 + "%") || xlBasis || (!!lg && lg * 100 / 16 + "%") || lgBasis || (!!md && md * 100 / 16 + "%") || mdBasis || (!!sm && sm * 100 / 16 + "%") || smBasis || (!!xs && xs * 100 / 16 + "%") || xsBasis || null};
+    align-items: ${ ({ xxlAlign }) => xxlAlign || null};
+    justify-content: ${ ({ xxlJustify }) => xxlJustify || null};
+    flex-grow: ${ ({ xxlGrow }) => xxlGrow || null};
+    flex-shrink: ${ ({ xxlShrink }) => xxlShrink || null};
+    flex-direction: ${ ({ xxlRow, xxlColumn, xxlRowReverse, xxlColumnReverse }) => (!!xxlRow && "row") || (!!xxlColumn && "column") || (!!xxlRowReverse && "row-reverse") || (!!xxlColumnReverse && "row-reverse") || null};
     margin: ${ ({ xxlMargin }) => xxlMargin || null};
     padding: ${ ({ xxlPadding }) => xxlPadding || null};
 }

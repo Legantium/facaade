@@ -19,8 +19,8 @@ storiesOf('Button', module)
 
 storiesOf("Block", module)
     .add("Single block", () => (
-        <Block>
-            <Block xs={16} smHide style={{ background: "red" }}>Content</Block>
+        <Block style={{background: "none"}}>
+            <Block xs={16} smHide lg={16}>Content</Block>
         </Block>
     ))
 

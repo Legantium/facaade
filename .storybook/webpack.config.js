@@ -7,8 +7,8 @@ module.exports = {
                 test: /\.scss$/,
                 loaders: [
                     "style-loader",
-                    ["css-loader", { sourceMap: true }],
-                    ["sass-loader", { sourceMap: true }]
+                    "css-loader",
+                    "sass-loader"
                 ],
                 include: path.resolve(__dirname, "../")
             }
