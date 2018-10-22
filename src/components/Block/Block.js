@@ -30,6 +30,8 @@ Block.propTypes = {
     margin: oneOfType([number, string]),
     padding: oneOfType([number, string]),
     hide: bool,
+    wrap: bool,
+    noWrap: bool,
 
     xs: oneOfType([number, bool]),
     xsBasis: string,
@@ -46,6 +48,8 @@ Block.propTypes = {
     xsMargin: oneOfType([number, string]),
     xsPadding: oneOfType([number, string]),
     xsHide: bool,
+    xsWrap: bool,
+    xsNowrap: bool,
 
     sm: oneOfType([number, bool]),
     smBasis: string,
@@ -62,6 +66,8 @@ Block.propTypes = {
     smMargin: oneOfType([number, string]),
     smPadding: oneOfType([number, string]),
     smHide: bool,
+    smWrap: bool,
+    smNowrap: bool,
 
     md: oneOfType([number, bool]),
     mdBasis: string,
@@ -78,6 +84,8 @@ Block.propTypes = {
     mdMargin: oneOfType([number, string]),
     mdPadding: oneOfType([number, string]),
     mdHide: bool,
+    mdWrap: bool,
+    mdNowrap: bool,
 
     lg: oneOfType([number, bool]),
     lgWidth: string,
@@ -94,6 +102,8 @@ Block.propTypes = {
     lgMargin: oneOfType([number, string]),
     lgPadding: oneOfType([number, string]),
     lgHide: bool,
+    lgWrap: bool,
+    lgNowrap: bool,
 
     xl: oneOfType([number, bool]),
     xlBasis: string,
@@ -110,6 +120,8 @@ Block.propTypes = {
     xlMargin: oneOfType([number, string]),
     xlPadding: oneOfType([number, string]),
     xlHide: bool,
+    xlWrap: bool,
+    xlNowrap: bool,
 
     xxl: oneOfType([number, bool]),
     xxlBasis: string,
@@ -126,6 +138,8 @@ Block.propTypes = {
     xxlMargin: oneOfType([number, string]),
     xxlPadding: oneOfType([number, string]),
     xxlHide: bool,
+    xxlWrap: bool,
+    xxlNowrap: bool,
 }
 
 function Block({
@@ -153,6 +167,7 @@ const styledBlock = styled(Block)`
     display: ${({ block, inline, inlineBlock, inlineFlex }) => (!!block && "block") || (!!inlineBlock && "inline-block") || (!!inline && "inline") || (!!inlineFlex && "inline-flex") || "flex"}
     display: ${({ hide, xsHide }) => !!xsHide && !!hide && "none" || null};
     flex-basis: ${ ({ xsBasis, xs, basis }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsBasis || basis || null};
+    flex-wrap: ${({ wrap, noWrap, xsWrap, xsNowrap }) => (!!wrap && "wrap") || (!!xsWrap && "wrap") || (!!noWrap && "nowrap") || (!!xsNowrap && "nowrap") || null};
     width: ${ ({ xsWidth, xs, width }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsWidth || width || null};
     height: ${ ({ xsHeight, height }) => xsHeight || height || null};
     align-items: ${ ({ align, xsAlign }) => xsAlign || align || null};
@@ -163,23 +178,25 @@ const styledBlock = styled(Block)`
     margin: ${ ({ xsMargin, margin }) => xsMargin || margin || null};
     padding: ${ ({ xsPadding, padding }) => xsPadding || padding || null};
 
-        @media all and (min-width: ${breakpoints.xs}) {
-            display: ${({ xsHide, xs, xsBasis }) => !!xsHide ? "none" : (!!xs || !!xsBasis) ? "flex" : null};
-            flex-basis: ${ ({ xsBasis, xs }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsBasis || null};
-            width: ${ ({ xsWidth, xs }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsWidth || null};
-            height: ${ ({ xsHeight }) => xsHeight || null};
-            align-items: ${ ({ xsAlign }) => xsAlign || null};
-            justify-content: ${ ({ xsJustify }) => xsJustify || null};
-            flex-grow: ${ ({ xsGrow }) => xsGrow || null};
-            flex-shrink: ${ ({ xsShrink }) => xsShrink || null};
-            flex-direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
-            margin: ${ ({ xsMargin }) => xsMargin || null};
-            padding: ${ ({ xsPadding }) => xsPadding || null};
-        }
+    @media all and (min-width: ${breakpoints.xs}) {
+        display: ${({ xsHide, xs, xsBasis }) => !!xsHide ? "none" : (!!xs || !!xsBasis) ? "flex" : null};
+        flex-basis: ${ ({ xsBasis, xs }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsBasis || null};
+        flex-wrap: ${({ xsWrap, xsNowrap }) => (!!xsWrap && "wrap") || (!!xsNowrap && "nowrap") || null};
+        width: ${ ({ xsWidth, xs }) => (xs === true ? "100%" : !!xs && xs * 100 / 16 + "%") || xsWidth || null};
+        height: ${ ({ xsHeight }) => xsHeight || null};
+        align-items: ${ ({ xsAlign }) => xsAlign || null};
+        justify-content: ${ ({ xsJustify }) => xsJustify || null};
+        flex-grow: ${ ({ xsGrow }) => xsGrow || null};
+        flex-shrink: ${ ({ xsShrink }) => xsShrink || null};
+        flex-direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
+        margin: ${ ({ xsMargin }) => xsMargin || null};
+        padding: ${ ({ xsPadding }) => xsPadding || null};
+    }
 
     @media all and (min-width: ${breakpoints.sm}) {
         display: ${({ smHide, sm, smBasis }) => !!smHide ? "none" : (!!sm || !!smBasis) ? "flex" : null};
         flex-basis: ${ ({ smBasis, sm }) => (sm === true ? "100%" : !!sm && sm * 100 / 16 + "%") || smBasis || null};
+        flex-wrap: ${({ smWrap, smNowrap }) => (!!smWrap && "wrap") || (!!smNowrap && "nowrap") || null};
         width: ${ ({ smWidth, sm }) => (sm === true ? "100%" : !!sm && sm * 100 / 16 + "%") || smWidth || null};
         height: ${ ({ smHeight }) => smHeight || null};
         align-items: ${ ({ smAlign }) => smAlign || null};
@@ -194,6 +211,7 @@ const styledBlock = styled(Block)`
     @media all and (min-width: ${breakpoints.md}) {
         display: ${({ mdHide, md, mdBasis }) => !!mdHide ? "none" : !!md || !!mdBasis ? "flex" : null};
         flex-basis: ${ ({ mdBasis, md }) => (md === true ? "100%" : !!md && md * 100 / 16 + "%") || mdBasis || null};
+        flex-wrap: ${({ mdWrap, mdNowrap }) => (!!mdWrap && "wrap") || (!!mdNowrap && "nowrap") || null};
         width: ${ ({ mdWidth, md }) => (md === true ? "100%" : !!md && md * 100 / 16 + "%") || mdWidth || null};
         height: ${ ({ mdHeight }) => mdHeight || null};
         align-items: ${ ({ mdAlign }) => mdAlign || null};
@@ -208,6 +226,7 @@ const styledBlock = styled(Block)`
     @media all and (min-width: ${breakpoints.lg}) {
         display: ${({ lgHide, lg, lgBasis }) => !!lgHide ? "none" : (!!lg || !!lgBasis) ? "flex" : null};
         flex-basis: ${ ({ lgBasis, lg }) => (lg === true ? "100%" : !!lg && lg * 100 / 16 + "%") || lgBasis || null};
+        flex-wrap: ${({ lgWrap, lgNowrap }) => (!!lgWrap && "wrap") || (!!lgNowrap && "nowrap") || null};
         width: ${ ({ lgWidth, lg }) => (lg === true ? "100%" : !!lg && lg * 100 / 16 + "%") || lgWidth || null};
         height: ${ ({ lgHeight }) => lgHeight || null};
         align-items: ${ ({ lgAlign }) => lgAlign || null};
@@ -222,6 +241,7 @@ const styledBlock = styled(Block)`
     @media all and (min-width: ${breakpoints.xl}) {
         display: ${({ xlHide, xl, xlBasis }) => !!xlHide ? "none" : (!!xl || !!xlBasis) ? "flex" : null};
         flex-basis: ${ ({ xlBasis, xl }) => (xl === true ? "100%" : !!xl && xl * 100 / 16 + "%") || xlBasis || null};
+        flex-wrap: ${({ xlWrap, xlNowrap }) => (!!xlWrap && "wrap") || (!!xlNowrap && "nowrap") || null};    
         width: ${ ({ xlWidth, xl }) => (xl === true ? "100%" : !!xl && xl * 100 / 16 + "%") || xlWidth || null};
         height: ${ ({ xlHeight }) => xlHeight || null};
         align-items: ${ ({ xlAlign }) => xlAlign || null};
@@ -236,6 +256,7 @@ const styledBlock = styled(Block)`
     @media all and (min-width: ${breakpoints.xxl}) {
         display: ${({ xxlHide, xxl, xxlBasis }) => !!xxlHide ? "none" : (!!xxl || !!xxlBasis) ? "flex" : null};
         flex-basis: ${ ({ xxlBasis, xxl }) => (xxl === true ? "100%" : !!xxl && xxl * 100 / 16 + "%") || xxlBasis || null};
+        flex-wrap: ${({ xxlWrap, xxlNowrap }) => (!!xxlWrap && "wrap") || (!!xxlNowrap && "nowrap") || null};
         width: ${ ({ xxlWidth, xxl }) => (xxl === true ? "100%" : !!xxl && xxl * 100 / 16 + "%") || xxlWidth || null};
         height: ${ ({ xxlHeight }) => xxlHeight || null};
         align-items: ${ ({ xxlAlign }) => xxlAlign || null};

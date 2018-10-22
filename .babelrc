@@ -3,8 +3,5 @@
         "react",
         "env",
         "stage-0"
-    ],
-    "plugins": [
-        "babel-plugin-sass-export"
     ]
 }

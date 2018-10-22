@@ -19,8 +19,14 @@ storiesOf('Button', module)
 
 storiesOf("Block", module)
     .add("Single block", () => (
-        <Block as="section" className="this-is-my-section">
-            This is my section
+        <Block xs justify="flex-start">Block 1</Block>
+    ))
+
+    .add("Three columns", () => (
+        <Block wrap mdNowrap lgHide>
+            <Block xs>Column 1</Block>
+            <Block xs>Column 2</Block>
+            <Block xs>Column 3</Block>
         </Block>
     ))
 
@@ -30,7 +36,6 @@ storiesOf("TextInput", module)
     .add("type:password", () => (<TextInput type="password" value="nicetry" onChange={action("changed")} />))
     .add("type:number", () => (<TextInput type="number" value="123456789" onChange={action("changed")} />))
     .add("type:tel", () => (<TextInput type="tel" value="123456789" onChange={action("changed")} />))
-
 
 // storiesOf("Textarea", module)
 //     .add("autogrow textarea", () => (<Textarea autoGrow value="123456789" onChange={action("textarea input change")} />)
