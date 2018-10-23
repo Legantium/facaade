@@ -1,18 +1,24 @@
-import React from 'react'
 import { string, func, bool, node, oneOf, object, number } from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+import _Textarea from 'react-autosize-textarea'
 import { getClassName } from '../../utils'
-
-require('./Textarea.scss')
 
 /**
  * @name Textarea
- * @desc div wrapping textarea
+ * @desc textarea element
+ * @class
+ *      .Textarea
+ *      .Textarea__label
+ *      .Textarea__native-input
+ *      .Textarea__error
  * @example
- *      ->  <Textarea value="passedValue" onChange={e => passedValue = e.target.value} error="an error" />
- *      <-  <div class="Textarea">
- *              <textarea type="email" class="Textarea__native-input" value="passedValue" />
- *              <div class="Textarea__error">an error</div>
- *          </div>
+ *      ->  <Textarea value="passedValue" onChange={e => passedValue = e.target.value} error="an error" label="fill it in"/>
+ *      <-  <textarea class="Textarea">
+ *              <label class-"Textarea__label">Fill it in</label>
+ *              <input type="email" class="TextInput__native-input" value="passedValue" />
+ *              <div class="TextInput__error">an error</div>
+ *          </textarea>
  */
 
 Textarea.propTypes = {
@@ -21,9 +27,12 @@ Textarea.propTypes = {
     style: object,
     id: string,
     name: string,
+    label: string,
+    inlineLabel: string,
     value: string,
     initialValue: string,
     placeholder: string,
+    children: node,
     onClick: func,
     onFocus: func,
     onBlur: func,
@@ -33,11 +42,11 @@ Textarea.propTypes = {
     onKeyPress: func,
     onKeyDown: func,
     onKeyUp: func,
+    onResize: func,
     optional: bool,
     disabled: bool,
     error: string,
     autoFocus: bool,
-    autoGrow: bool
 }
 
 function Textarea({
@@ -46,11 +55,12 @@ function Textarea({
     style = {},
     id = null,
     name = null,
+    label = null,
+    inlineLabel = null,
     disabled = false,
     value = null,
     initialValue = null,
     placeholder = null,
-    type = "text",
     onClick = null,
     onChange = null,
     onFocus = null,
@@ -61,7 +71,10 @@ function Textarea({
     onKeyPress = null,
     onKeyDown = null,
     onKeyUp = null,
+    onResize = null,
     optional = false,
+    minLength = null,
+    maxLength = null,
     error = null
 }) {
 
@@ -69,7 +82,8 @@ function Textarea({
 
     return (
         <div className={getClassName(classNamesArr)}>
-            <input
+            {(!!label || !!inlineLabel) && <label className={getClassName(classNamesArr, "__label")}>{label}</label>}
+            <_Textarea
                 autoFocus={autoFocus}
                 id={id}
                 className={getClassName(classNamesArr, "__native-input")}
@@ -83,11 +97,11 @@ function Textarea({
                 onKeyPress={onKeyPress}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                onResize={onResize}
                 disabled={disabled}
                 value={value !== undefined ? value : initialValue || ""}
                 placeholder={placeholder}
                 name={name || id}
-                type={type}
                 style={style}
                 required={!optional}
             />
@@ -96,4 +110,12 @@ function Textarea({
     )
 }
 
-export default Textarea
+const styledTextarea = styled(Textarea)`
+    
+    label {
+        ${({ label }) => !!label ? "display: block" : null}
+    }
+    
+`
+
+export default styledTextarea

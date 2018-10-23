@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "react": "^16.5.0",
+    "react-autosize-textarea": "^5.0.0",
     "react-dom": "^16.5.0",
     "styled-components": "^4.0.2"
   }

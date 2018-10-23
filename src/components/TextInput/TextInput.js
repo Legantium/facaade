@@ -1,5 +1,6 @@
-import React from 'react'
 import { string, func, bool, node, oneOf, object, number } from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 import { getClassName } from '../../utils'
 
 require('./TextInput.scss')
@@ -8,8 +9,9 @@ require('./TextInput.scss')
  * @name Button
  * @desc button element
  * @example
- *      ->  <TextInput type="email" value="passedValue" onChange={e => passedValue = e.target.value} error="an error" />
+ *      ->  <TextInput type="email" value="passedValue" onChange={e => passedValue = e.target.value} error="an error" label="fill it in"/>
  *      <-  <div class="TextInput">
+ *              <label class="TextInput__labbel">fill it in</label>
  *              <input type="email" class="TextInput__native-input" value="passedValue" />
  *              <div class="TextInput__error">an error</div>
  *          </div>
@@ -21,6 +23,8 @@ TextInput.propTypes = {
     style: object,
     id: string,
     name: string,
+    label: string,
+    inlineLabel: string,
     type: oneOf(["text", "number", "tel", "email", "password"]),
     value: string,
     initialValue: string,
@@ -47,6 +51,8 @@ function TextInput({
     style = {},
     id = null,
     name = null,
+    label = null,
+    inlineLabel = null,
     disabled = false,
     value = null,
     initialValue = null,
@@ -72,6 +78,7 @@ function TextInput({
 
     return (
         <div className={getClassName(classNamesArr)}>
+            {(!!label || !!inlineLabel) && <label className={getClassName(classNamesArr, "__label")}>{(!!label && label) || (!!inlineLabel && inlineLabel)}</label>}
             <input
                 autoFocus={autoFocus}
                 id={id}
@@ -99,4 +106,12 @@ function TextInput({
     )
 }
 
-export default TextInput
+const styledTextInput = styled(TextInput)`
+    
+    label {
+        ${({ label }) => !!label ? "display: block" : null}
+    }
+    
+`
+
+export default styledTextInput

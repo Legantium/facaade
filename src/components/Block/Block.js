@@ -4,6 +4,15 @@ import { getClassName } from '../../utils'
 import { breakpoints } from '../../defaults/theme'
 import styled from 'styled-components'
 
+/**
+ * @name Block
+ * @desc generic element used to build up structure/layouts
+ * @class .Block
+ * @example
+ *      -> <Block as="section" className="my-section">Content here</Block>
+ *      <- <section class="Block my-section">Content here</section>
+ */
+
 Block.propTypes = {
 
     children: node,
@@ -151,7 +160,8 @@ function Block({
 }) {
 
     const classNameArr = [
-        className,
+        "Block",
+        className
     ]
 
     return React.createElement(as,

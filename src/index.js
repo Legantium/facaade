@@ -1,31 +1,100 @@
 export { default as Button } from './components/Button'
 export { default as Block } from './components/Block'
 export { default as TextInput } from './components/TextInput'
+export { default as Textarea } from './components/Textarea'
 
-// TextInput
-    // type : enum - "text" | "number" | "tel" | "email" | "password" - ("text")
-    // size : number - (16px)
-    // value: string
-    // placeholder: string
-    // optional: boolean - (true)
-    // onFocus: func
-    // onChange: func
-    // onActive: func
-    // onBlur: func
-    // onKeyPress: func
-    // onKeyDown: func
-    // onKeyUp: func
-    // onMouseEnter: func
-    // onMouseOver: func
-    // onMouseLeave: func
-    // onHover: func    
-    // onClick: func
-    // minLength: number
-    // maxLength: number
-    // id: string
-    // name: string
-    // disabled: boolean - (false)
-    // error: string
+// Block
+    // children
+    // className
+    // id
+    // style
+
+    // basis
+    // align
+    // justify
+    // grow
+    // shrink
+    // row
+    // column
+    // roWReverse
+    // column-reverse
+    // margin
+    // padding
+
+    // xsBasis
+    // xsAlign
+    // xsJustify
+    // xsGrow
+    // xsShrink
+    // xsRow
+    // xsColumn
+    // xsRowReverse
+    // xsColumnReverse
+    // xsMargin
+    // xsPadding
+
+    // smBasis
+    // smAlign
+    // smJustify
+    // smGrow
+    // smShrink
+    // smRow
+    // smColumn
+    // smRowReverse
+    // smColumnReverse
+    // smMargin
+    // smPadding
+
+    // mdBasis
+    // mdAlign
+    // mdJustify
+    // mdGrow
+    // mdShrink
+    // mdRow
+    // mdColumn
+    // mdRowReverse
+    // mdColumnReverse
+    // mdMargin
+    // mdPadding
+
+    // lgBasis
+    // lgAlign
+    // lgJustify
+    // lgGrow
+    // lgShrink
+    // lgRow
+    // lgColumn
+    // lgRowReverse
+    // lgColumnReverse
+    // lgMargin
+    // lgPadding
+
+    // xlBasis
+    // xlAlign
+    // xlJustify
+    // xlGrow
+    // xlShrink
+    // xlRow
+    // xlColumn
+    // xlRowReverse
+    // xlColumnReverse
+    // xlMargin
+    // xlPadding
+
+    // xxlBasis
+    // xxlAlign
+    // xxlJustify
+    // xxlGrow
+    // xxlShrink
+    // xxlRow
+    // xxlColumn
+    // xxlRowReverse
+    // xxlColumnReverse
+    // xxlMargin
+    // xxlPadding
+
+
+
 
 // TextArea
     // size : number - (16px)
