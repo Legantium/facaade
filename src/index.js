@@ -9,7 +9,12 @@ export { default as Textarea } from './components/Textarea'
 export { default as ChipInput } from './components/ChipInput'
 
 export { default as Popover } from './components/Popover'
-export { default as Tooltip } from './components/Popover'
+
+export { default as Tooltip } from './components/Tooltip'
+
+// Menu
+// Toolbar
+
 
 // Chip
     // id
@@ -27,30 +32,6 @@ export { default as Tooltip } from './components/Popover'
     // onMouseLeave: func
     // onHover: func    
     // onClick: func
-
-// Toolbar
-    // id
-    // direction - enum: "row" | "row-reverse" | "column" | "column-reverse"
-    // justify - enum "start" | "end" | "center" | "space-around" | "space-between"
-    // align - enum "top" | "center" | "bottom" | "stretch" - ("stretch")
-    // className
-    // style
-
-// Button
-    // id
-    // style: css object
-    // className: string
-    // flat: boolean (false)
-    // muted: boolean (false)
-    // outline: boolean (false)
-    // onClick: func
-    // onFocus
-    // onBlur
-    // onMouseEnter
-    // onMouseLeave
-    // compact: boolean (false)
-    // padded: boolean (false)
-    // size: number (16px)
 
 // Form
     // id: string
