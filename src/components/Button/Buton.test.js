@@ -8,18 +8,31 @@ describe("<Button>", () => {
     it("render", () => {
         const c = shallow(<Button>Button</Button>)
         expect(c.find("button")).toBeTruthy()
+        expect(c).toMatchSnapshot()
     })
 
     it("onClick", () => {
-        const onClick = sinon.spy()
-        const c = shallow(<Button onClick={onClick}>Button</Button>)
+        const spy = sinon.spy()
+        const c = shallow(<Button onClick={spy}>Button</Button>)
         c.simulate("click")
-        expect(onClick.callCount).toBe(1)
+        expect(spy.callCount).toBe(1)
+    })
+
+    it("onClick doesn't call on disabled button", () => {
+        const spy = sinon.spy()
+        const c = shallow(<Button disabled onClick={spy}>Button</Button>)
+        c.simulate("click")
+        expect(spy.callCount).toBe(0)
     })
 
     it("className", () => {
         const c = shallow(<Button className="custom-class">Button</Button>)
         expect(c.find(".custom-class")).toBeTruthy()
+    })
+
+    it("disabled has is-disabled className", () => {
+        const c = shallow(<Button disabled>Button</Button>)
+        expect(c.find(".is-disabled")).toBeTruthy()
     })
 
     it("id", () => {

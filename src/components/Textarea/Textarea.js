@@ -78,10 +78,13 @@ function Textarea({
     error = null
 }) {
 
+    if (value === null) { throw new Error("No value passed to Textarea. Where no value is available, pass an empty string") }
+    if (onChange === null) { throw new Error("No change handler passed to Textarea.") }
+
     const classNamesArr = ["Textarea", className]
 
     return (
-        <div className={getClassName(classNamesArr)}>
+        <div className={getClassName(classNamesArr, null, disabled && "is-disabled")}>
             {(!!label || !!inlineLabel) && <label className={getClassName(classNamesArr, "__label")}>{label}</label>}
             <_Textarea
                 autoFocus={autoFocus}

@@ -74,6 +74,9 @@ function TextInput({
     error = null
 }) {
 
+    if (value === null) { throw new Error("No value passed to TextInput. Where no value is available, pass an empty string") }
+    if (onChange === null) { throw new Error("No change handler passed to TextInput.") }
+
     const classNamesArr = ["TextInput", className]
 
     return (
@@ -94,7 +97,7 @@ function TextInput({
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
                 disabled={disabled}
-                value={value !== undefined ? value : initialValue || ""}
+                value={value !== "" ? value : initialValue}
                 placeholder={placeholder}
                 name={name || id}
                 type={type}

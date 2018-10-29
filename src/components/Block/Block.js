@@ -38,6 +38,7 @@ Block.propTypes = {
     columnReverse: bool,
     margin: oneOfType([number, string]),
     padding: oneOfType([number, string]),
+    spacing: number,
     hide: bool,
     wrap: bool,
     noWrap: bool,
@@ -56,6 +57,7 @@ Block.propTypes = {
     xsColumnReverse: bool,
     xsMargin: oneOfType([number, string]),
     xsPadding: oneOfType([number, string]),
+    xsSpacing: oneOfType([number, string]),
     xsHide: bool,
     xsWrap: bool,
     xsNowrap: bool,
@@ -74,6 +76,7 @@ Block.propTypes = {
     smColumnReverse: bool,
     smMargin: oneOfType([number, string]),
     smPadding: oneOfType([number, string]),
+    smSpacing: oneOfType([number, string]),
     smHide: bool,
     smWrap: bool,
     smNowrap: bool,
@@ -92,6 +95,7 @@ Block.propTypes = {
     mdColumnReverse: bool,
     mdMargin: oneOfType([number, string]),
     mdPadding: oneOfType([number, string]),
+    mdSpacing: oneOfType([number, string]),
     mdHide: bool,
     mdWrap: bool,
     mdNowrap: bool,
@@ -110,6 +114,7 @@ Block.propTypes = {
     lgColumnReverse: bool,
     lgMargin: oneOfType([number, string]),
     lgPadding: oneOfType([number, string]),
+    lgSpacing: oneOfType([number, string]),
     lgHide: bool,
     lgWrap: bool,
     lgNowrap: bool,
@@ -128,6 +133,7 @@ Block.propTypes = {
     xlColumnReverse: bool,
     xlMargin: oneOfType([number, string]),
     xlPadding: oneOfType([number, string]),
+    xlSpacing: oneOfType([number, string]),
     xlHide: bool,
     xlWrap: bool,
     xlNowrap: bool,
@@ -146,6 +152,7 @@ Block.propTypes = {
     xxlColumnReverse: bool,
     xxlMargin: oneOfType([number, string]),
     xxlPadding: oneOfType([number, string]),
+    xxlSpacing: oneOfType([number, string]),
     xxlHide: bool,
     xxlWrap: bool,
     xxlNowrap: bool,
@@ -182,11 +189,15 @@ const styledBlock = styled(Block)`
     height: ${ ({ xsHeight, height }) => xsHeight || height || null};
     align-items: ${ ({ align, xsAlign }) => xsAlign || align || null};
     justify-content: ${ ({ xsJustify, justify }) => xsJustify || justify || null};
-    flex-grow: ${ ({ xsGrow, grow }) => xsGrow || grow || null};
-    flex-shrink: ${ ({ xsShrink, shrink }) => xsShrink || shrink || null};
+    flex-grow: ${ ({ xsGrow, grow }) => (xsGrow === true && 1) || xsGrow || (grow === true && 1) || grow || null};
+    flex-shrink: ${ ({ xsShrink, shrink }) => (xsShrink === true && 1) || xsShrink || (shrink === true && 1) || shrink || null};
     flex-direction: ${ ({ row, column, rowReverse, columnReverse, xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!row && "row") || (!!xsColumn && "column") || (!!column && "column") || (!!xsRowReverse && "row-reverse") || (!!rowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || (!!columnReverse && "row-reverse") || null};
-    margin: ${ ({ xsMargin, margin }) => xsMargin || margin || null};
-    padding: ${ ({ xsPadding, padding }) => xsPadding || padding || null};
+    padding: ${ ({ xsPadding, padding }) => (!!xsPadding && xsPadding + "px") || (!!padding && padding + "px") || null};
+    
+    ${({ spacing, compact }) => !!spacing && `
+        > * { margin: ${spacing / 2}px; }    
+        ${!!compact && `margin: -${spacing / 2}px;` || ""}
+    `}
 
     @media all and (min-width: ${breakpoints.xs}) {
         display: ${({ xsHide, xs, xsBasis }) => !!xsHide ? "none" : (!!xs || !!xsBasis) ? "flex" : null};
@@ -196,11 +207,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ xsHeight }) => xsHeight || null};
         align-items: ${ ({ xsAlign }) => xsAlign || null};
         justify-content: ${ ({ xsJustify }) => xsJustify || null};
-        flex-grow: ${ ({ xsGrow }) => xsGrow || null};
-        flex-shrink: ${ ({ xsShrink }) => xsShrink || null};
+        flex-grow: ${ ({ xsGrow }) => (xsGrow === true && 1) || xsGrow || null};
+        flex-shrink: ${ ({ xsShrink }) => (xsShrink === true && 1) || xsShrink || null};
         flex-direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
-        margin: ${ ({ xsMargin }) => xsMargin || null};
-        padding: ${ ({ xsPadding }) => xsPadding || null};
+        padding: ${ ({ xsPadding = null }) => (xsPadding !== null && xsPadding + "px") || null};
+        ${({ xsSpacing = null, xsCompact, xsNoCompact }) => xsSpacing !== null && `
+            > * { margin: ${xsSpacing / 2}px; }    
+            ${!!xsCompact && `margin: -${xsSpacing / 2}px; max-width: calc(100% - ${xsSpacing / 2}px)` || ""}
+            ${!!xsNoCompact && "margin: inherit" || ""}
+        `}
     }
 
     @media all and (min-width: ${breakpoints.sm}) {
@@ -211,11 +226,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ smHeight }) => smHeight || null};
         align-items: ${ ({ smAlign }) => smAlign || null};
         justify-content: ${ ({ smJustify }) => smJustify || null};
-        flex-grow: ${ ({ smGrow }) => smGrow || null};
-        flex-shrink: ${ ({ smShrink }) => smShrink || null};
+        flex-grow: ${ ({ smGrow }) => (smGrow === true && 1) || smGrow || null};
+        flex-shrink: ${ ({ smShrink }) => (smShrink === true && 1) || smShrink || null};
         flex-direction: ${ ({ smRow, smColumn, smRowReverse, smColumnReverse }) => (!!smRow && "row") || (!!smColumn && "column") || (!!smRowReverse && "row-reverse") || (!!smColumnReverse && "row-reverse") || null};
-        margin: ${ ({ smMargin }) => smMargin || null};
-        padding: ${ ({ smPadding }) => smPadding || null};
+        padding: ${ ({ smPadding = null }) => (smPadding !== null && smPadding + "px") || null};
+        ${({ smSpacing = null, smCompact, smNoCompact }) => smSpacing !== null && `
+            > * { margin: ${smSpacing / 2}px; }    
+            ${!!smCompact && `margin: -${smSpacing / 2}px; max-width: calc(100% - ${smSpacing / 2}px)` || ""}
+            ${!!smNoCompact && "margin: inherit" || ""}
+        `}
     }
 
     @media all and (min-width: ${breakpoints.md}) {
@@ -226,11 +245,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ mdHeight }) => mdHeight || null};
         align-items: ${ ({ mdAlign }) => mdAlign || null};
         justify-content: ${ ({ mdJustify }) => mdJustify || null};
-        flex-grow: ${ ({ mdGrow }) => mdGrow || null};
-        flex-shrink: ${ ({ mdShrink }) => mdShrink || null};
+        flex-grow: ${ ({ mdGrow }) => (mdGrow === true && 1) || mdGrow || null};
+        flex-shrink: ${ ({ mdShrink }) => (mdShrink === true && 1) || mdShrink || null};
         flex-direction: ${ ({ mdRow, mdColumn, mdRowReverse, mdColumnReverse }) => (!!mdRow && "row") || (!!mdColumn && "column") || (!!mdRowReverse && "row-reverse") || (!!mdColumnReverse && "row-reverse") || null};
-        margin: ${ ({ mdMargin }) => mdMargin || null};
-        padding: ${ ({ mdPadding }) => mdPadding || null};
+        padding: ${ ({ mdPadding = null }) => (mdPadding !== null && mdPadding + "px") || null};
+        ${({ mdSpacing = null, mdCompact, mdNoCompact }) => mdSpacing !== null && `
+            > * { margin: ${mdSpacing / 2}px; }    
+            ${!!mdCompact && `margin: -${mdSpacing / 2}px; max-width: calc(100% - ${mdSpacing / 2}px)` || ""}
+            ${!!mdNoCompact && "margin: inherit" || ""}
+        `}
     }
 
     @media all and (min-width: ${breakpoints.lg}) {
@@ -241,11 +264,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ lgHeight }) => lgHeight || null};
         align-items: ${ ({ lgAlign }) => lgAlign || null};
         justify-content: ${ ({ lgJustify }) => lgJustify || null};
-        flex-grow: ${ ({ lgGrow }) => lgGrow || null};
-        flex-shrink: ${ ({ lgShrink }) => lgShrink || null};
+        flex-grow: ${ ({ lgGrow }) => (lgGrow === true && 1) || lgGrow || null};
+        flex-shrink: ${ ({ lgShrink }) => (lgShrink === true && 1) || lgShrink || null};
         flex-direction: ${ ({ lgRow, lgColumn, lgRowReverse, lgColumnReverse }) => (!!lgRow && "row") || (!!lgColumn && "column") || (!!lgRowReverse && "row-reverse") || (!!lgColumnReverse && "row-reverse") || null};
-        margin: ${ ({ lgMargin }) => lgMargin || null};
-        padding: ${ ({ lgPadding }) => lgPadding || null};
+        padding: ${ ({ lgPadding = null }) => (lgPadding !== null && lgPadding + "px") || null};
+        ${({ lgSpacing = null, lgCompact, lgNoCompact }) => lgSpacing !== null && `
+            > * { margin: ${lgSpacing / 2}px; }    
+            ${!!lgCompact && `margin: -${lgSpacing / 2}px; max-width: calc(100% - ${lgSpacing / 2}px)` || ""}
+            ${!!lgNoCompact && "margin: inherit" || ""}
+        `}
     }
 
     @media all and (min-width: ${breakpoints.xl}) {
@@ -256,11 +283,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ xlHeight }) => xlHeight || null};
         align-items: ${ ({ xlAlign }) => xlAlign || null};
         justify-content: ${ ({ xlJustify }) => xlJustify || null};
-        flex-grow: ${ ({ xlGrow }) => xlGrow || null};
-        flex-shrink: ${ ({ xlShrink }) => xlShrink || null};
+        flex-grow: ${ ({ xlGrow }) => (xlGrow === true && 1) || xlGrow || null};
+        flex-shrink: ${ ({ xlShrink }) => (xlShrink === true && 1) || xlShrink || null};
         flex-direction: ${ ({ xlRow, xlColumn, xlRowReverse, xlColumnReverse }) => (!!xlRow && "row") || (!!xlColumn && "column") || (!!xlRowReverse && "row-reverse") || (!!xlColumnReverse && "row-reverse") || null};
-        margin: ${ ({ xlMargin }) => xlMargin || null};
-        padding: ${ ({ xlPadding }) => xlPadding || null};
+        padding: ${ ({ xlPadding = null }) => (xlPadding !== null && xlPadding + "px") || null};
+        ${({ xlSpacing = null, xlCompact, xlNoCompact }) => xlSpacing !== null && `
+            > * { margin: ${xlSpacing / 2}px; }    
+            ${!!xlCompact && `margin: -${xlSpacing / 2}px; max-width: calc(100% - ${xlSpacing / 2}px)` || ""}
+            ${!!xlNoCompact && "margin: inherit" || ""}
+        `}
     }
 
     @media all and (min-width: ${breakpoints.xxl}) {
@@ -271,11 +302,15 @@ const styledBlock = styled(Block)`
         height: ${ ({ xxlHeight }) => xxlHeight || null};
         align-items: ${ ({ xxlAlign }) => xxlAlign || null};
         justify-content: ${ ({ xxlJustify }) => xxlJustify || null};
-        flex-grow: ${ ({ xxlGrow }) => xxlGrow || null};
-        flex-shrink: ${ ({ xxlShrink }) => xxlShrink || null};
+        flex-grow: ${ ({ xxlGrow }) => (xxlGrow === true && 1) || xxlGrow || null};
+        flex-shrink: ${ ({ xxlShrink }) => (xxlShrink === true && 1) || xxlShrink || null};
         flex-direction: ${ ({ xxlRow, xxlColumn, xxlRowReverse, xxlColumnReverse }) => (!!xxlRow && "row") || (!!xxlColumn && "column") || (!!xxlRowReverse && "row-reverse") || (!!xxlColumnReverse && "row-reverse") || null};
-        margin: ${ ({ xxlMargin }) => xxlMargin || null};
-        padding: ${ ({ xxlPadding }) => xxlPadding || null};
+        padding: ${ ({ xxlPadding = null }) => (xxlPadding !== null && xxlPadding + "px") || null};
+        ${({ xxlSpacing = null, xxlCompact, xxlNoCompact }) => xxlSpacing !== null && `
+            > * { margin: ${xxlSpacing / 2}px; }    
+            ${!!xxlCompact && `margin: -${xxlSpacing / 2}px; max-width: calc(100% - ${xxlSpacing / 2}px)` || ""}
+            ${!!xxlNoCompact && "margin: inherit" || ""}
+        `}
     }
 `
 

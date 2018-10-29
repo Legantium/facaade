@@ -1,8 +1,10 @@
+let importedConfig
+try { importedConfig = require('../../facaade.theme.js') } catch (err) { }
+
 export const colors = {
     black: "#2A2D30",
     accent: "#0092E0",
-    grey: "#5F6B79",
-    tint: "#F7F9FC"
+    ...(!!importedConfig && !!importedConfig.default && !!importedConfig.default.colors ? importedConfig.default.colors : {})
 }
 
 export const breakpoints = {
@@ -12,4 +14,5 @@ export const breakpoints = {
     lg: '992px',
     xl: '1200px',
     xxl: '1600px',
+    ...(!!importedConfig && !!importedConfig.default && !!importedConfig.default.breakpoints ? importedConfig.default.breakpoints : {})
 }

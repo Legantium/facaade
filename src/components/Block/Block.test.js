@@ -7,6 +7,7 @@ describe("<Block>", () => {
     it("render as default <div>", () => {
         const c = shallow(<Block>Block</Block>)
         expect(c.find("div")).toBeTruthy()
+        expect(c).toMatchSnapshot()
     })
 
     it("render as <section>", () => {

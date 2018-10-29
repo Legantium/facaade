@@ -1,10 +1,14 @@
-export const getClassName = (classNameArr, suffix = null) => {
+export const getClassName = (classNameArr, suffix = null, ...stateClasses) => {
 
-    if(typeof classNameArr === "string") classNameArr = [classNameArr]
-    
+    if (typeof classNameArr === "string") classNameArr = [classNameArr]
+
     classNameArr = classNameArr.filter(cn => !!cn)
 
-    if (!!suffix) classNameArr = classNameArr.map(className => `${className}${suffix}`)
+    if (!!suffix) {
+        classNameArr = classNameArr.map(className => `${className}${suffix}`)
+    }
 
-    return classNameArr.join(" ").trim()
+    stateClasses = stateClasses.filter(cn => !!cn)
+
+    return [...classNameArr, ...stateClasses].join(" ").trim()
 }
