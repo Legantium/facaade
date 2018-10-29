@@ -1,9 +1,15 @@
 export { default as Block } from './components/Block'
+
 export { default as Button } from './components/Button'
+
 export { default as TextInput } from './components/TextInput'
+
 export { default as Textarea } from './components/Textarea'
+
 export { default as ChipInput } from './components/ChipInput'
-export { default as Dropdown } from './components/Dropdown'
+
+export { default as Popover } from './components/Popover'
+export { default as Tooltip } from './components/Popover'
 
 // Chip
     // id

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Dropdown from './Dropdown'
+import Popover from './Popover'
 import { node, string, bool, oneOf } from 'prop-types'
 
-export default class DropdownWrapper extends Component {
+export default class PopoverWrapper extends Component {
 
     static propTypes = {
         children: node.isRequired,
@@ -10,24 +10,25 @@ export default class DropdownWrapper extends Component {
         overlay: node,
         click: bool,
         hover: bool,
-        placement: oneOf(["bottom", "bottom-left", "left", "top-left", "top", "top-right", "right", "bottom-right"])
+        placement: oneOf(["bottom", "bottom-left", "left", "top-left", "top", "top-right", "right", "bottom-right"]),
+        isOpen: bool
     }
 
     state = {
-        isOpen: false,
+        _isOpen: false,
         mouseOver: false
     }
 
     open = () => {
-        this.setState({ isOpen: true })
+        this.setState({ _isOpen: true })
     }
 
     close = () => {
-        this.setState({ isOpen: false })
+        this.setState({ _isOpen: false })
     }
 
     toggle = () => {
-        this.setState(prev => ({ isOpen: !prev.isOpen }))
+        this.setState(prev => ({ _isOpen: !prev._isOpen }))
     }
 
     _handleMouseEnter = () => {
@@ -37,7 +38,7 @@ export default class DropdownWrapper extends Component {
         if (hover) {
             setTimeout(() => {
                 if (this.state.mouseOver) {
-                    this.setState({ isOpen: true })
+                    this.setState({ _isOpen: true })
                 }
             }, 250)
         }
@@ -50,7 +51,7 @@ export default class DropdownWrapper extends Component {
         if (hover) {
             setTimeout(() => {
                 if (!this.state.mouseOver) {
-                    this.setState({ isOpen: false })
+                    this.setState({ _isOpen: false })
                 }
             }, 200)
         }
@@ -59,7 +60,7 @@ export default class DropdownWrapper extends Component {
     _handleBlur = () => {
         const { click = true } = this.props
         if (click) {
-            this.setState({ isOpen: false })
+            this.setState({ _isOpen: false })
         }
     }
 
@@ -71,7 +72,7 @@ export default class DropdownWrapper extends Component {
 
     _handleContextMenu = e => {
         e.preventDefault()
-        this.setState({ isOpen: true })
+        this.setState({ _isOpen: true })
     }
 
 
@@ -81,14 +82,15 @@ export default class DropdownWrapper extends Component {
             children,
             className = "",
             overlay = null,
-            placement = "bottom"
+            placement = "bottom",
+            isOpen = null
         } = this.props
 
-        const { isOpen } = this.state
+        const { _isOpen } = this.state
 
         return (
-            <Dropdown
-                isOpen={isOpen}
+            <Popover
+                isOpen={isOpen !== null ? isOpen : _isOpen}
                 open={(e) => this.open(e)}
                 close={(e) => this.close(e)}
                 toggle={(e) => this.toggle(e)}
@@ -100,7 +102,7 @@ export default class DropdownWrapper extends Component {
                 placement={placement}
                 overlay={overlay}
                 className={className}
-            >{children}</Dropdown>
+            >{children}</Popover>
         )
     }
 }

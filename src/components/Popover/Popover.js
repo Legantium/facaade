@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { getClassName } from '../../utils'
 
 /**
- * @name Dropdown
+ * @name Popover
  * @desc a wrapper for adding showing a node on hover, click or right-click
  * @class
- *      .Dropdown
- *      .Dropdown__trigger
- *      .Dropdown__overlay
+ *      .Popover
+ *      .Popover__trigger
+ *      .Popover__overlay
  */
 
-Dropdown.propTypes = {
+Popover.propTypes = {
     className: string,
     placement: oneOf(["top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left"]),
     isOpen: bool,
@@ -24,7 +24,7 @@ Dropdown.propTypes = {
     _handleMouseLeave: func
 }
 
-function Dropdown({
+function Popover({
     className = null,
     placement = null,
     isOpen = false,
@@ -37,7 +37,7 @@ function Dropdown({
     children = null
 }) {
 
-    const classNamesArr = ["Dropdown", className]
+    const classNamesArr = ["Popover", className]
 
     return (
         <span
@@ -62,17 +62,17 @@ function Dropdown({
     )
 }
 
-const styledDropdown = styled(Dropdown)`
+const styledPopover = styled(Popover)`
     position: relative;
     z-index: 1;
     display: inline-block;
 
-    .Dropdown__trigger {
+    .Popover__trigger {
         user-select: none;
         cursor: pointer;
     }
 
-    .Dropdown__overlay {
+    .Popover__overlay {
         position: absolute;
         
         &.at-bottom {
@@ -114,4 +114,4 @@ const styledDropdown = styled(Dropdown)`
     }
 `
 
-export default styledDropdown
+export default styledPopover

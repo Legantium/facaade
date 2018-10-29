@@ -3,7 +3,7 @@ import './_Block.stories'
 import './_TextInput.stories'
 import './_Textarea.stories'
 import './_ChipInput.stories'
-import './_Dropdown.stories'
+import './_Popover.stories'
 
 // storiesOf("Layout examples", module)
 //     .add("example", () => (
