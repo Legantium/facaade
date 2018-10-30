@@ -6,7 +6,7 @@ import { Block } from '../src';
 storiesOf("Block", module)
 
     .add("Single block", () => (
-        <Block xs style={{ background: "red" }} justify="flex-start" padding={12} mdPadding={0} lgPadding={24}>Block 1</Block>
+        <Block xs style={{ background: "red" }} justify="flex-start" padding={24}>Block 1</Block>
     ))
 
     .add("Three columns", () => (
@@ -15,4 +15,8 @@ storiesOf("Block", module)
             <Block xs={6} style={{ background: "blue" }}>Column 2</Block>
             <Block xs={6} style={{ background: "green" }}>Column 3</Block>
         </Block>
+    ))
+
+    .add("Section", () => (
+        <Block as="section" xs style={{ background: "red" }} justify="flex-start" padding={24}>Block 1</Block>
     ))

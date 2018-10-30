@@ -1,28 +1,31 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, waitForElement, wait } from 'react-testing-library'
 import Block from '.'
 
 describe("<Block>", () => {
 
     it("render as default <div>", () => {
-        const c = shallow(<Block>Block</Block>)
-        expect(c.find("div")).toBeTruthy()
-        expect(c).toMatchSnapshot()
+        const { container } = render(<Block>Block</Block>)
+        const block = container.querySelector('div')
+        expect(block).toBeInTheDocument()
     })
 
     it("render as <section>", () => {
-        const c = shallow(<Block as="section">Block</Block>)
-        expect(c.find("section")).toBeTruthy()
+        const { container } = render(<Block as="section">Block</Block>)
+        const section = container.querySelector("section")
+        expect(section).toBeInTheDocument()
     })
 
-    it("className", () => {
-        const c = shallow(<Block className="custom-class">Block</Block>)
-        expect(c.find(".custom-class")).toBeTruthy()
+    it("can pass className", () => {
+        const { container } = render(<Block className="custom-class">Block</Block>)
+        const block = container.querySelector(".custom-class")
+        expect(block).toBeInTheDocument()
     })
 
-    it("id", () => {
-        const c = shallow(<Block id="block">Block</Block>)
-        expect(c.find("#block")).toBeTruthy()
+    it("can pass id", () => {
+        const { container } = render(<Block id="my-block">Block</Block>)
+        const block = container.querySelector("#my-block")
+        expect(block).toBeInTheDocument()
     })
 
 })

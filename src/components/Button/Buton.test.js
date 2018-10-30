@@ -1,43 +1,37 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, fireEvent } from 'react-testing-library'
 import sinon from 'sinon'
 import Button from './'
 
 describe("<Button>", () => {
 
     it("render", () => {
-        const c = shallow(<Button>Button</Button>)
-        expect(c.find("button")).toBeTruthy()
-        expect(c).toMatchSnapshot()
+        const spy = sinon.spy()
+        const { container } = render(<Button onClick={spy}>Button</Button>)
+        const button = container.querySelector('button')
+        expect(button).toBeInTheDocument()
     })
 
-    it("onClick", () => {
+    it("can pass disabled prop", () => {
         const spy = sinon.spy()
-        const c = shallow(<Button onClick={spy}>Button</Button>)
-        c.simulate("click")
+        const { container } = render(<Button disabled onClick={spy}>Button</Button>)
+        const button = container.querySelector('button')
+        expect(button).toBeDisabled()
+    })
+
+    it("runs onClick handler ", () => {
+        const spy = sinon.spy()
+        const { container } = render(<Button onClick={spy}>Button</Button>)
+        const button = container.querySelector('button')
+        fireEvent.click(button)
         expect(spy.callCount).toBe(1)
     })
 
-    it("onClick doesn't call on disabled button", () => {
+    it("doesn't run onClick handler when disabled ", () => {
         const spy = sinon.spy()
-        const c = shallow(<Button disabled onClick={spy}>Button</Button>)
-        c.simulate("click")
+        const { container } = render(<Button disabled onClick={spy}>Button</Button>)
+        const button = container.querySelector('button')
+        fireEvent.click(button)
         expect(spy.callCount).toBe(0)
     })
-
-    it("className", () => {
-        const c = shallow(<Button className="custom-class">Button</Button>)
-        expect(c.find(".custom-class")).toBeTruthy()
-    })
-
-    it("disabled has is-disabled className", () => {
-        const c = shallow(<Button disabled>Button</Button>)
-        expect(c.find(".is-disabled")).toBeTruthy()
-    })
-
-    it("id", () => {
-        const c = shallow(<Button id="button">Button</Button>)
-        expect(c.find("#block")).toBeTruthy()
-    })
-
 })

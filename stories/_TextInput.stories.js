@@ -1,30 +1,62 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { TextInput } from '../src';
+import { State, Store } from "@sambego/storybook-state";
+
+const store = new Store({ value: "" })
 
 storiesOf("TextInput", module)
 
-    .add("type:text", () => (
-        <TextInput value="value" onChange={action("changed")} className="custom-text-input" />
-    ))
+    .add("type:text", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput value={store.get("value")} onChange={e => store.set({ value: e.target.value })} className="custom-text-input" />
+            </State>
+        )
+    })
 
-    .add("type:email", () => (
-        <TextInput type="email" value="abc@domain.com" onChange={action("changed")} />
-    ))
+    .add("type:email", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput type="email" value={store.get("value")} onChange={e => store.set({ value: e.target.value })} />
+            </State>
+        )
+    })
 
-    .add("type:password", () => (
-        <TextInput type="password" value="nicetry" onChange={action("changed")} />
-    ))
+    .add("type:password", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput type="password" value={store.get("value")} onChange={e => store.set({ value: e.target.value })} />
+            </State>
+        )
+    })
 
-    .add("type:number", () => (
-        <TextInput type="number" value="123456789" onChange={action("changed")} />
-    ))
+    .add("type:number", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput type="number" value={store.get("value")} onChange={e => store.set({ value: e.target.value })} />
+            </State>
+        )
+    })
 
-    .add("type:tel", () => (
-        <TextInput type="tel" value="123456789" onChange={action("changed")} />
-    ))
+    .add("type:tel", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput type="tel" value={store.get("value")} onChange={e => store.set({ value: e.target.value })} />
+            </State>
+        )
+    })
 
-    .add("with label", () => (
-        <TextInput label="fill this in!" onChange={action("changed")} value="" />
-    ))
+    .add("with label", () => {
+        store.set({ value: "" })
+        return (
+            <State store={store}>
+                <TextInput label="fill this in!" value={store.get("value")} onChange={e => store.set({ value: e.target.value })} />
+            </State>
+        )
+    })

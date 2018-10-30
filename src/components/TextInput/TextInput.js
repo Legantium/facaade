@@ -3,8 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { getClassName } from '../../utils'
 
-require('./TextInput.scss')
-
 /**
  * @name Button
  * @desc button element
@@ -86,18 +84,18 @@ function TextInput({
                 autoFocus={autoFocus}
                 id={id}
                 className={getClassName(classNamesArr, "__native-input")}
-                onClick={onClick}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onMouseIn={onMouseIn}
-                onMouseOver={onMouseOver}
-                onMouseOut={onMouseOut}
-                onKeyPress={onKeyPress}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
+                onClick={!disabled ? onClick : null}
+                onChange={!disabled ? onChange : null}
+                onFocus={!disabled ? onFocus : null}
+                onBlur={!disabled ? onBlur : null}
+                onMouseIn={!disabled ? onMouseIn : null}
+                onMouseOver={!disabled ? onMouseOver : null}
+                onMouseOut={!disabled ? onMouseOut : null}
+                onKeyPress={!disabled ? onKeyPress : null}
+                onKeyDown={!disabled ? onKeyDown : null}
+                onKeyUp={!disabled ? onKeyUp : null}
                 disabled={disabled}
-                value={value !== "" ? value : initialValue}
+                value={value}
                 placeholder={placeholder}
                 name={name || id}
                 type={type}

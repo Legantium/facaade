@@ -7,8 +7,8 @@
     "start": "npm run dev",
     "dev": "npm run test:watch",
     "build": "babel --source-maps --ignore=src/testSetup,**/*.test.js src/ -d dist/",
-    "test": "jest",
-    "test:watch": "jest --watch --verbose",
+    "test": "jest --silent",
+    "test:watch": "jest --watch --silent",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "author": "Aaron Moore <hi@madebyaaron.xyz>",
@@ -16,6 +16,7 @@
   "sideEffects": false,
   "devDependencies": {
     "@babel/preset-stage-0": "^7.0.0",
+    "@sambego/storybook-state": "^1.3.1",
     "@storybook/react": "^3.4.10",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
@@ -31,8 +32,10 @@
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
     "jest": "^23.6.0",
+    "jest-dom": "^2.1.0",
     "node-sass": "^4.9.4",
     "prop-types": "^15.6.2",
+    "react-testing-library": "^5.2.3",
     "regenerator-runtime": "^0.12.1",
     "sass-loader": "^7.1.0",
     "sinon": "^6.3.1",
@@ -48,10 +51,7 @@
       "/dist/",
       "/src/setup"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>src/testSetup/setupEnzyme.js",
-    "moduleNameMapper": {
-      "^.*\\.scss$": "<rootDir>src/testSetup/scssStub.js"
-    }
+    "setupTestFrameworkScriptFile": "<rootDir>src/testSetup/jest-setup.js"
   },
   "dependencies": {
     "react": "^16.5.0",

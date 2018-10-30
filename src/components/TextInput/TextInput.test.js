@@ -1,44 +1,38 @@
 import React from 'react'
-import { shallow, render } from 'enzyme'
+import { render, fireEvent } from 'react-testing-library'
 import sinon from 'sinon'
-import TextInput from '.'
+import TextInput from './'
 
 describe("<TextInput>", () => {
 
-    it("render ", () => {
-        const c = shallow(<TextInput value="value" onChange={(e) => { }} />)
-        expect(c.find("TextInput")).toBeTruthy()
-        expect(c).toMatchSnapshot()
+    it("render", () => {
+        const spy = sinon.spy()
+        const { container } = render(<TextInput onChange={spy} value="" />)
+        const textInput = container.querySelector('input')
+        expect(textInput).toBeInTheDocument()
     })
 
-    it("className", () => {
-        const c = shallow(<TextInput value="value" className="custom-class" onChange={(e) => { }} />)
-        expect(c.find(".custom-class")).toBeTruthy()
+    it("can pass disabled prop", () => {
+        const spy = sinon.spy()
+        const { container } = render(<TextInput disabled Textarea onChange={spy} value="" />)
+        const textInput = container.querySelector('input')
+        expect(textInput).toBeDisabled()
     })
 
-    it("onChange", () => {
-        const onChange = sinon.spy()
-        const c = shallow(<TextInput value="value" className="custom-class" onChange={onChange} />)
-        c.simulate("change")
-        expect(onChange.callCount).toBe(1)
+    it("runs onChange handler", () => {
+        const spy = sinon.spy()
+        const { container } = render(<TextInput onChange={spy} value="" />)
+        const textInput = container.querySelector('input')
+        fireEvent.change(textInput, { target: { value: 'New value' } })
+        expect(spy.callCount).toBe(1)
     })
 
-    it("disabled has is-disabled className", () => {
-        const c = shallow(<TextInput disabled value="value" />)
-        expect(c.find(".is-disabled")).toBeTruthy()
-    })
-
-    it("id", () => {
-        const c = shallow(<TextInput value="value" id="custom-id" onChange={(e) => { }} />)
-        expect(c.find("#custom-id")).toBeTruthy()
-    })
-
-    it("error: no value passed", () => {
-        expect(() => { render(<TextInput id="custom-id" onChange={(e) => { }} />) }).toThrow()
-    })
-
-    it("error: no change handler passed", () => {
-        expect(() => { render(<TextInput id="custom-id" value="value" />) }).toThrow()
+    it("doesn't run onChange handler when disabled", () => {
+        const spy = sinon.spy()
+        const { container } = render(<TextInput onChange={spy} disabled value="" />)
+        const textInput = container.querySelector('input')
+        fireEvent.change(textInput, { target: { value: 'New value' } })
+        expect(spy.callCount).toBe(0)
     })
 
 })

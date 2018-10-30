@@ -6,6 +6,8 @@ export { default as TextInput } from './components/TextInput'
 
 export { default as Textarea } from './components/Textarea'
 
+export { default as Chip } from './components/Chip'
+
 export { default as ChipInput } from './components/ChipInput'
 
 export { default as Popover } from './components/Popover'

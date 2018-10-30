@@ -23,7 +23,7 @@ ChipInput.propTypes = {
     className: string,
     style: object,
     id: string,
-    chips: array,
+    children: array,
     name: string,
     label: string,
     inlineLabel: string,
@@ -44,9 +44,8 @@ function ChipInput({
     id = null,
     label = null,
     inlineLabel = null,
-    onAdd = () => { },
+    onAdd = (value) => { console.log("adding " + value) },
     onRemove = (_id) => { console.log("removing " + _id) },
-    chips = [],
     placeholder = null,
     onFocus = null,
     onBlur = null,
@@ -60,16 +59,22 @@ function ChipInput({
 
     const classNamesArr = ["ChipInput", className]
 
-    const handleKeyDown = function (e) {
-        // [",", "Enter", " "].includes(e.key) ? onAdd(e.target.value) : null
-        [",", "Enter", " "].includes(e.key) ? console.log("adding one") : null
+    const _handleKeyPress = function (e) {
+        if ([",", "Enter", " "].includes(e.key)) {
+            e.preventDefault()
+            const value = e.target.value.trim()
+            if (value === "") return null
+
+            !!onAdd && onAdd(value)
+            e.target.value = ""
+        }
     }
 
-    const handleBlur = function (e) {
-        onAdd(e.target.value)
+    const _handleBlur = function (e) {
+        !!onAdd && onAdd(e.target.value)
     }
 
-    const handleFocus = function () {
+    const _handleFocus = function () {
 
     }
 
@@ -79,7 +84,6 @@ function ChipInput({
             <a className={getClassName(classNamesArr, "__faux-input")}>
                 <div className={getClassName(classNamesArr, "__chip-container")}>
                     {React.Children.map(children, child => child.props.onRemove = onRemove)}
-                    <span>Item 1</span>
                 </div>
 
                 <input
@@ -90,9 +94,9 @@ function ChipInput({
                     style={style}
                     required={!optional}
                     placeholder={placeholder}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    onKeyDown={handleKeyDown}
+                    onFocus={_handleFocus}
+                    onBlur={_handleBlur}
+                    onKeyDown={_handleKeyPress}
                 />
             </a>
             {!!error && <div className={getClassName(classNamesArr, "__error")}>{error}</div>}

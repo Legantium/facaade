@@ -36,8 +36,8 @@ Textarea.propTypes = {
     onClick: func,
     onFocus: func,
     onBlur: func,
-    onMouseIn: func,
-    onMouseOut: func,
+    onMouseEnter: func,
+    onMouseLeave: func,
     onMouseOver: func,
     onKeyPress: func,
     onKeyDown: func,
@@ -65,8 +65,8 @@ function Textarea({
     onChange = null,
     onFocus = null,
     onBlur = null,
-    onMouseIn = null,
-    onMouseOut = null,
+    onMouseEnter = null,
+    onMouseLeave = null,
     onMouseOver = null,
     onKeyPress = null,
     onKeyDown = null,
@@ -90,16 +90,16 @@ function Textarea({
                 autoFocus={autoFocus}
                 id={id}
                 className={getClassName(classNamesArr, "__native-input")}
-                onClick={onClick}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onMouseIn={onMouseIn}
-                onMouseOver={onMouseOver}
-                onMouseOut={onMouseOut}
-                onKeyPress={onKeyPress}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
+                onClick={!disabled ? onClick : null}
+                onChange={!disabled ? onChange : null}
+                onFocus={!disabled ? onFocus : null}
+                onBlur={!disabled ? onBlur : null}
+                onMouseEnter={!disabled ? onMouseEnter : null}
+                onMouseOver={!disabled ? onMouseOver : null}
+                onMouseLeave={!disabled ? onMouseLeave : null}
+                onKeyPress={!disabled ? onKeyPress : null}
+                onKeyDown={!disabled ? onKeyDown : null}
+                onKeyUp={!disabled ? onKeyUp : null}
                 onResize={onResize}
                 disabled={disabled}
                 value={value !== undefined ? value : initialValue || ""}

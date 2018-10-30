@@ -166,15 +166,10 @@ function Block({
     as = "div"
 }) {
 
-    const classNameArr = [
-        "Block",
-        className
-    ]
-
     return React.createElement(as,
         {
             id,
-            className: getClassName(classNameArr),
+            className,
             style
         },
         children)
@@ -193,6 +188,7 @@ const styledBlock = styled(Block)`
     flex-shrink: ${ ({ xsShrink, shrink }) => (xsShrink === true && 1) || xsShrink || (shrink === true && 1) || shrink || null};
     flex-direction: ${ ({ row, column, rowReverse, columnReverse, xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!row && "row") || (!!xsColumn && "column") || (!!column && "column") || (!!xsRowReverse && "row-reverse") || (!!rowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || (!!columnReverse && "row-reverse") || null};
     padding: ${ ({ xsPadding, padding }) => (!!xsPadding && xsPadding + "px") || (!!padding && padding + "px") || null};
+    box-sizing: border-box;
     
     ${({ spacing, compact }) => !!spacing && `
         > * { margin: ${spacing / 2}px; }    

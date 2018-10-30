@@ -55,9 +55,9 @@ function Popover({
                 {children}
             </span>
 
-            <span className={getClassName(classNamesArr, "__overlay", `at-${placement}`)}>
-                {!!isOpen ? overlay : null}
-            </span>
+            {!!isOpen && <span className={getClassName(classNamesArr, "__overlay", `at-${placement}`)}>
+                {overlay}
+            </span>}
         </span>
     )
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Popover from './Popover'
 import { node, string, bool, oneOf } from 'prop-types'
 
+import Popover from './Popover'
 export default class PopoverWrapper extends Component {
 
     static propTypes = {

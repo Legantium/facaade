@@ -1,46 +1,38 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, fireEvent } from 'react-testing-library'
 import sinon from 'sinon'
-import Textarea from '.'
+import Textarea from './'
 
 describe("<Textarea>", () => {
 
-    it("render ", () => {
-        const c = shallow(<Textarea value="value" onChange={(e) => { }} />)
-        expect(c.find("textarea")).toBeTruthy()
-        expect(c).toMatchSnapshot()
+    it("render", () => {
+        const spy = sinon.spy()
+        const { container } = render(<Textarea onChange={spy} value="" />)
+        const textarea = container.querySelector('textarea')
+        expect(textarea).toBeInTheDocument()
     })
 
-    it("className", () => {
-        const c = shallow(<Textarea value="value" className="custom-class" onChange={(e) => { }} />)
-        expect(c.find(".custom-class")).toBeTruthy()
+    it("can pass disabled prop", () => {
+        const spy = sinon.spy()
+        const { container } = render(<Textarea disabled Textarea onChange={spy} value="" />)
+        const textarea = container.querySelector('textarea')
+        expect(textarea).toBeDisabled()
     })
 
-    it("onChange", () => {
-        const onChange = sinon.spy()
-        const c = shallow(<Textarea value="value" className="custom-class" onChange={onChange} />)
-        c.simulate("change")
-        expect(onChange.callCount).toBe(1)
+    it("runs onChange handler", () => {
+        const spy = sinon.spy()
+        const { container } = render(<Textarea onChange={spy} value="" />)
+        const textarea = container.querySelector('textarea')
+        fireEvent.change(textarea, { target: { value: 'New value' } })
+        expect(spy.callCount).toBe(1)
     })
 
-    it("disabled has is-disabled className", () => {
-        const c = shallow(<Textarea disabled value="value">Button</Textarea>)
-        expect(c.find(".is-disabled")).toBeTruthy()
+    it("doesn't run onChange handler when disabled", () => {
+        const spy = sinon.spy()
+        const { container } = render(<Textarea onChange={spy} disabled value="" />)
+        const textarea = container.querySelector('textarea')
+        fireEvent.change(textarea, { target: { value: 'New value' } })
+        expect(spy.callCount).toBe(0)
     })
-
-    it("id", () => {
-        const c = shallow(<Textarea value="value" id="custom-id" onChange={(e) => { }} />)
-        expect(c.find("#custom-id")).toBeTruthy()
-    })
-
-    it("error: no value passed", () => {
-        expect(() => { render(<Textarea id="custom-id" onChange={(e) => { }} />) }).toThrow()
-    })
-
-    it("error: no change handler passed", () => {
-        expect(() => { render(<Textarea id="custom-id" value="value" />) }).toThrow()
-    })
-
-
 
 })
