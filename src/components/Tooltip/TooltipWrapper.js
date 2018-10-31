@@ -58,7 +58,7 @@ export default class TooltipWrapper extends Component {
     }
 
     _handleBlur = () => {
-        const { click = true } = this.props
+        const { click = false } = this.props
         if (click) {
             this.setState({ _isOpen: false })
         }
@@ -71,8 +71,11 @@ export default class TooltipWrapper extends Component {
     }
 
     _handleContextMenu = e => {
-        e.preventDefault()
-        this.setState({ _isOpen: true })
+        const { context = false } = this.props
+        if (context) {
+            e.preventDefault()
+            this.setState({ _isOpen: true })
+        }
     }
 
 
