@@ -1,6 +1,6 @@
 {
   "name": "facaade",
-  "version": "0.2.12",
+  "version": "0.3.0",
   "description": "A style agnostic react component library",
   "main": "./dist/index.js",
   "scripts": {
@@ -33,11 +33,9 @@
     "enzyme-to-json": "^3.3.4",
     "jest": "^23.6.0",
     "jest-dom": "^2.1.0",
-    "node-sass": "^4.9.4",
     "prop-types": "^15.6.2",
     "react-testing-library": "^5.2.3",
     "regenerator-runtime": "^0.12.1",
-    "sass-loader": "^7.1.0",
     "sinon": "^6.3.1",
     "style-loader": "^0.23.1"
   },
