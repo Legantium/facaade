@@ -75,41 +75,51 @@ const styledTooltip = styled(Tooltip)`
     .Tooltip__overlay {
         position: absolute;
         
-        &.at-bottom {
-            bottom: 0;
-            right: 50%;
-            transform: translateY(100%) translateX(50%);
-        }
+        ${({ placement }) => {
+            switch (placement) {
 
-        &.at-bottom-right {
-            bottom: 0;
-            right: 0;
-            transform: translateY(100%);
-        }
+                case "bottom-right":
+                return `
+                    bottom: 0;
+                    right: 0;
+                    transform: translateY(100%);    
+                `
 
-        &.at-bottom-left {
-            bottom: 0;
-            left: 0;
-            transform: translateY(100%);
-        }
+                case "bottom-left":
+                return `
+                    bottom: 0;
+                    left: 0;
+                    transform: translateY(100%);
+                `
 
-        &.at-top {
-            top: 0;
-            right: 50%;
-            transform: translateY(-100%) translateX(50%);
-        }
+                case "top":
+                return `
+                    top: 0;
+                    right: 50%;
+                    transform: translateY(-100%) translateX(50%);
+                `
 
-        &.at-top-right {
-            top: 0;
-            right: 0;
-            transform: translateY(-100%);
-        }
+                case "top-right":
+                return `
+                    top: 0;
+                    right: 0;
+                    transform: translateY(-100%);    
+                `
 
-        &.at-top-left {
-            top: 0;
-            left: 0;
-            transform: translateY(-100%);
-        }
+                case "top-left":
+                return `
+                    top: 0;
+                    right: 0;
+                    transform: translateY(-100%);
+                `
+                default : // "bottom"
+                return `
+                    bottom: 0;
+                    right: 50%;
+                    transform: translateY(100%) translateX(50%);
+                `
+            }
+        }}
         
     }
 `

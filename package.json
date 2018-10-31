@@ -1,6 +1,6 @@
 {
   "name": "facaade",
-  "version": "0.3.2",
+  "version": "0.3.6",
   "description": "A style agnostic react component library",
   "main": "./dist/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "jest --silent",
     "test:watch": "jest --watch --silent",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "publish": "npm run build && npm publish"
+    "pub": "npm run build && npm publish"
   },
   "author": "Aaron Moore <hi@madebyaaron.xyz>",
   "license": "ISC",
