@@ -38,7 +38,7 @@ Block.propTypes = {
     columnReverse: bool,
     margin: oneOfType([number, string]),
     padding: oneOfType([number, string]),
-    spacing: number,
+    // spacing: number,
     hide: bool,
     wrap: bool,
     noWrap: bool,
@@ -57,7 +57,7 @@ Block.propTypes = {
     xsColumnReverse: bool,
     xsMargin: oneOfType([number, string]),
     xsPadding: oneOfType([number, string]),
-    xsSpacing: oneOfType([number, string]),
+    // xsSpacing: oneOfType([number, string]),
     xsHide: bool,
     xsWrap: bool,
     xsNowrap: bool,
@@ -76,7 +76,7 @@ Block.propTypes = {
     smColumnReverse: bool,
     smMargin: oneOfType([number, string]),
     smPadding: oneOfType([number, string]),
-    smSpacing: oneOfType([number, string]),
+    // smSpacing: oneOfType([number, string]),
     smHide: bool,
     smWrap: bool,
     smNowrap: bool,
@@ -95,7 +95,7 @@ Block.propTypes = {
     mdColumnReverse: bool,
     mdMargin: oneOfType([number, string]),
     mdPadding: oneOfType([number, string]),
-    mdSpacing: oneOfType([number, string]),
+    // mdSpacing: oneOfType([number, string]),
     mdHide: bool,
     mdWrap: bool,
     mdNowrap: bool,
@@ -114,7 +114,7 @@ Block.propTypes = {
     lgColumnReverse: bool,
     lgMargin: oneOfType([number, string]),
     lgPadding: oneOfType([number, string]),
-    lgSpacing: oneOfType([number, string]),
+    // lgSpacing: oneOfType([number, string]),
     lgHide: bool,
     lgWrap: bool,
     lgNowrap: bool,
@@ -133,7 +133,7 @@ Block.propTypes = {
     xlColumnReverse: bool,
     xlMargin: oneOfType([number, string]),
     xlPadding: oneOfType([number, string]),
-    xlSpacing: oneOfType([number, string]),
+    // xlSpacing: oneOfType([number, string]),
     xlHide: bool,
     xlWrap: bool,
     xlNowrap: bool,
@@ -152,7 +152,7 @@ Block.propTypes = {
     xxlColumnReverse: bool,
     xxlMargin: oneOfType([number, string]),
     xxlPadding: oneOfType([number, string]),
-    xxlSpacing: oneOfType([number, string]),
+    // xxlSpacing: oneOfType([number, string]),
     xxlHide: bool,
     xxlWrap: bool,
     xxlNowrap: bool,
@@ -190,10 +190,10 @@ const styledBlock = styled(Block)`
     padding: ${ ({ xsPadding, padding }) => (!!xsPadding && xsPadding + "px") || (!!padding && padding + "px") || null};
     box-sizing: border-box;
     
-    ${({ spacing, compact }) => !!spacing && `
+    ${'' /* ${({ spacing, compact }) => !!spacing && `
         > * { margin: ${spacing / 2}px; }    
         ${!!compact && `margin: -${spacing / 2}px;` || ""}
-    `}
+    `} */}
 
     @media all and (min-width: ${breakpoints.xs}) {
         display: ${({ xsHide, xs, xsBasis }) => !!xsHide ? "none" : (!!xs || !!xsBasis) ? "flex" : null};
@@ -207,11 +207,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ xsShrink }) => (xsShrink === true && 1) || xsShrink || null};
         flex-direction: ${ ({ xsRow, xsColumn, xsRowReverse, xsColumnReverse }) => (!!xsRow && "row") || (!!xsColumn && "column") || (!!xsRowReverse && "row-reverse") || (!!xsColumnReverse && "row-reverse") || null};
         padding: ${ ({ xsPadding = null }) => (xsPadding !== null && xsPadding + "px") || null};
-        ${({ xsSpacing = null, xsCompact, xsNoCompact }) => xsSpacing !== null && `
+        ${'' /* ${({ xsSpacing = null, xsCompact, xsNoCompact }) => xsSpacing !== null && `
             > * { margin: ${xsSpacing / 2}px; }    
             ${!!xsCompact && `margin: -${xsSpacing / 2}px; max-width: calc(100% - ${xsSpacing / 2}px)` || ""}
             ${!!xsNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 
     @media all and (min-width: ${breakpoints.sm}) {
@@ -226,11 +226,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ smShrink }) => (smShrink === true && 1) || smShrink || null};
         flex-direction: ${ ({ smRow, smColumn, smRowReverse, smColumnReverse }) => (!!smRow && "row") || (!!smColumn && "column") || (!!smRowReverse && "row-reverse") || (!!smColumnReverse && "row-reverse") || null};
         padding: ${ ({ smPadding = null }) => (smPadding !== null && smPadding + "px") || null};
-        ${({ smSpacing = null, smCompact, smNoCompact }) => smSpacing !== null && `
+        ${'' /* ${({ smSpacing = null, smCompact, smNoCompact }) => smSpacing !== null && `
             > * { margin: ${smSpacing / 2}px; }    
             ${!!smCompact && `margin: -${smSpacing / 2}px; max-width: calc(100% - ${smSpacing / 2}px)` || ""}
             ${!!smNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 
     @media all and (min-width: ${breakpoints.md}) {
@@ -245,11 +245,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ mdShrink }) => (mdShrink === true && 1) || mdShrink || null};
         flex-direction: ${ ({ mdRow, mdColumn, mdRowReverse, mdColumnReverse }) => (!!mdRow && "row") || (!!mdColumn && "column") || (!!mdRowReverse && "row-reverse") || (!!mdColumnReverse && "row-reverse") || null};
         padding: ${ ({ mdPadding = null }) => (mdPadding !== null && mdPadding + "px") || null};
-        ${({ mdSpacing = null, mdCompact, mdNoCompact }) => mdSpacing !== null && `
+        ${'' /* ${({ mdSpacing = null, mdCompact, mdNoCompact }) => mdSpacing !== null && `
             > * { margin: ${mdSpacing / 2}px; }    
             ${!!mdCompact && `margin: -${mdSpacing / 2}px; max-width: calc(100% - ${mdSpacing / 2}px)` || ""}
             ${!!mdNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 
     @media all and (min-width: ${breakpoints.lg}) {
@@ -264,11 +264,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ lgShrink }) => (lgShrink === true && 1) || lgShrink || null};
         flex-direction: ${ ({ lgRow, lgColumn, lgRowReverse, lgColumnReverse }) => (!!lgRow && "row") || (!!lgColumn && "column") || (!!lgRowReverse && "row-reverse") || (!!lgColumnReverse && "row-reverse") || null};
         padding: ${ ({ lgPadding = null }) => (lgPadding !== null && lgPadding + "px") || null};
-        ${({ lgSpacing = null, lgCompact, lgNoCompact }) => lgSpacing !== null && `
+        ${'' /* ${({ lgSpacing = null, lgCompact, lgNoCompact }) => lgSpacing !== null && `
             > * { margin: ${lgSpacing / 2}px; }    
             ${!!lgCompact && `margin: -${lgSpacing / 2}px; max-width: calc(100% - ${lgSpacing / 2}px)` || ""}
             ${!!lgNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 
     @media all and (min-width: ${breakpoints.xl}) {
@@ -283,11 +283,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ xlShrink }) => (xlShrink === true && 1) || xlShrink || null};
         flex-direction: ${ ({ xlRow, xlColumn, xlRowReverse, xlColumnReverse }) => (!!xlRow && "row") || (!!xlColumn && "column") || (!!xlRowReverse && "row-reverse") || (!!xlColumnReverse && "row-reverse") || null};
         padding: ${ ({ xlPadding = null }) => (xlPadding !== null && xlPadding + "px") || null};
-        ${({ xlSpacing = null, xlCompact, xlNoCompact }) => xlSpacing !== null && `
+        ${'' /* ${({ xlSpacing = null, xlCompact, xlNoCompact }) => xlSpacing !== null && `
             > * { margin: ${xlSpacing / 2}px; }    
             ${!!xlCompact && `margin: -${xlSpacing / 2}px; max-width: calc(100% - ${xlSpacing / 2}px)` || ""}
             ${!!xlNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 
     @media all and (min-width: ${breakpoints.xxl}) {
@@ -302,11 +302,11 @@ const styledBlock = styled(Block)`
         flex-shrink: ${ ({ xxlShrink }) => (xxlShrink === true && 1) || xxlShrink || null};
         flex-direction: ${ ({ xxlRow, xxlColumn, xxlRowReverse, xxlColumnReverse }) => (!!xxlRow && "row") || (!!xxlColumn && "column") || (!!xxlRowReverse && "row-reverse") || (!!xxlColumnReverse && "row-reverse") || null};
         padding: ${ ({ xxlPadding = null }) => (xxlPadding !== null && xxlPadding + "px") || null};
-        ${({ xxlSpacing = null, xxlCompact, xxlNoCompact }) => xxlSpacing !== null && `
+        ${'' /* ${({ xxlSpacing = null, xxlCompact, xxlNoCompact }) => xxlSpacing !== null && `
             > * { margin: ${xxlSpacing / 2}px; }    
             ${!!xxlCompact && `margin: -${xxlSpacing / 2}px; max-width: calc(100% - ${xxlSpacing / 2}px)` || ""}
             ${!!xxlNoCompact && "margin: inherit" || ""}
-        `}
+        `} */}
     }
 `
 
