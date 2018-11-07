@@ -64,7 +64,6 @@ function Popover({
 
 const styledPopover = styled(Popover)`
     position: relative;
-    z-index: 1;
     display: inline-block;
 
     .Popover__trigger {

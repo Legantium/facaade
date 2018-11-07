@@ -64,7 +64,6 @@ function Tooltip({
 
 const styledTooltip = styled(Tooltip)`
     position: relative;
-    z-index: 1;
     display: inline-block;
 
     .Tooltip__trigger {
