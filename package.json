@@ -1,6 +1,6 @@
 {
   "name": "facaade",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "A style agnostic react component library",
   "main": "./dist/index.js",
   "scripts": {

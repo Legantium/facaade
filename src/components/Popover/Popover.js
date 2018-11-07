@@ -63,7 +63,7 @@ function Popover({
 }
 
 const styledPopover = styled(Popover)`
-    position: relative;
+    ${({isOpen}) => isOpen ? "position: relative;" : ""}
     display: inline-block;
 
     .Popover__trigger {
