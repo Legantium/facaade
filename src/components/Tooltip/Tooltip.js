@@ -63,7 +63,7 @@ function Tooltip({
 }
 
 const styledTooltip = styled(Tooltip)`
-    ${({isOpen}) => isOpen ? "position: relative;" : ""}
+    position: ${ ({ isOpen }) => isOpen ? "relative;" : null}
     display: inline-block;
 
     .Tooltip__trigger {
