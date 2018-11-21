@@ -71,7 +71,11 @@ export default class PopoverWrapper extends Component {
     }
 
     _handleOverlayClick = () => {
-        this.setState({ _isOpen: false })
+        const { keepOverlayOpenOnClick = false } = this.props
+        
+        if (!keepOverlayOpenOnClick) {
+            this.setState({ _isOpen: false })
+        }
     }
 
     _handleContextMenu = e => {

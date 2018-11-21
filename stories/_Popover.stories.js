@@ -11,7 +11,7 @@ storiesOf("Popover", module)
     ))
 
     .add("on click", () => (
-        <Popover click overlay={<a onClick={action('Clickedthis too')}>I'm an overlay</a>}
+        <Popover click keepOverlayOpenOnClick overlay={<a onClick={action('Clickedthis too')}>I'm an overlay</a>}
         >Click Popover</Popover>
     ))
 
