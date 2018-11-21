@@ -55,7 +55,7 @@ function Button({
         <button
             autoFocus={autoFocus}
             id={id}
-            className={getClassName(["button", className], null, disabled && "is-disabled")}
+            className={getClassName(["Button", className], null, disabled && "is-disabled")}
             onClick={(e) => !disabled ? onClick(e) : null}
             onFocus={onFocus}
             onBlur={onBlur}
