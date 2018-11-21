@@ -11,13 +11,13 @@ storiesOf("Popover", module)
     ))
 
     .add("on click", () => (
-        <Popover click overlay={<div>I'm an overlay</div>}
-        >Hover Popover</Popover>
+        <Popover click overlay={<a onClick={action('Clickedthis too')}>I'm an overlay</a>}
+        >Click Popover</Popover>
     ))
 
     .add("on context", () => (
         <Popover context overlay={<div>I'm an overlay</div>}
-        >Hover Popover</Popover>
+        >Context Popover</Popover>
     ))
 
     .add("manually controlled", () => {

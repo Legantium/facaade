@@ -70,6 +70,10 @@ export default class PopoverWrapper extends Component {
         if (click) return this.toggle()
     }
 
+    _handleOverlayClick = () => {
+        this.setState({ _isOpen: false })
+    }
+
     _handleContextMenu = e => {
         e.preventDefault()
         this.setState({ _isOpen: true })
@@ -99,6 +103,7 @@ export default class PopoverWrapper extends Component {
                 _handleBlur={(e) => this._handleBlur(e)}
                 _handleClick={(e) => this._handleClick(e)}
                 _handleContextMenu={(e) => this._handleContextMenu(e)}
+                _handleOverlayClick={e => this._handleOverlayClick(e)}
                 placement={placement}
                 overlay={overlay}
                 className={className}

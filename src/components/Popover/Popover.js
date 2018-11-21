@@ -21,6 +21,7 @@ Popover.propTypes = {
     _handleClick: func,
     _handleContextMenu: func,
     _handleMouseEnter: func,
+    _handleOverlayClick: func,
     _handleMouseLeave: func
 }
 
@@ -31,6 +32,7 @@ function Popover({
     overlay = null,
     _handleBlur = null,
     _handleClick = null,
+    _handleOverlayClick = null,
     _handleContextMenu = null,
     _handleMouseEnter = null,
     _handleMouseLeave = null,
@@ -55,9 +57,13 @@ function Popover({
                 {children}
             </span>
 
-            {!!isOpen && <span className={getClassName(classNamesArr, "__overlay", `at-${placement}`)}>
-                {overlay}
-            </span>}
+           {!!isOpen && (
+                <div 
+                    className={getClassName(classNamesArr, "__overlay", `at-${placement}`)}
+                    onClick={_handleOverlayClick}
+                >
+                    {overlay}
+                </div>)}
         </span>
     )
 }

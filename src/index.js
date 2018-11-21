@@ -12,8 +12,6 @@ export { default as ChipInput } from './components/ChipInput'
 
 export { default as Popover } from './components/Popover'
 
-export { default as Tooltip } from './components/Tooltip'
-
 // Menu
 // Toolbar
 

@@ -5,7 +5,6 @@ import './_Textarea.stories'
 import './_Chip.stories'
 import './_ChipInput.stories'
 import './_Popover.stories'
-import './_Tooltip.stories'
 
 // storiesOf("Layout examples", module)
 //     .add("example", () => (
