@@ -27,9 +27,9 @@ Button.propTypes = {
     onBlur: func,
     onHover: func,
     onFocus: func,
-    onMouseIn: func,
+    onMouseEnter: func,
     onMouseOver: func,
-    onMouseOut: func,
+    onMouseLeave: func,
 }
 
 function Button({
@@ -38,7 +38,6 @@ function Button({
     onClick = null,
     onFocus = null,
     onBlur = null,
-    onMouseOver = null,
     onMouseEnter = null,
     onMouseOver = null,
     onMouseLeave = null,
