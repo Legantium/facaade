@@ -60,7 +60,7 @@ function Popover({
            {!!isOpen && (
                 <div 
                     className={getClassName(classNamesArr, "__overlay", `at-${placement}`)}
-                    onClickCapture={_handleOverlayClick}
+                    onClick={_handleOverlayClick}
                 >
                     {overlay}
                 </div>)}

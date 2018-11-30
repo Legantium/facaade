@@ -38,10 +38,10 @@ function Button({
     onClick = null,
     onFocus = null,
     onBlur = null,
-    onHover = null,
-    onMouseIn = null,
     onMouseOver = null,
-    onMouseOut = null,
+    onMouseEnter = null,
+    onMouseOver = null,
+    onMouseLeave = null,
     disabled = null,
     className = "",
     id = null,
@@ -59,9 +59,9 @@ function Button({
             onClick={(e) => !disabled ? onClick(e) : null}
             onFocus={onFocus}
             onBlur={onBlur}
-            onMouseIn={onMouseIn}
+            onMouseEnter={onMouseEnter}
             onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
+            onMouseLeave={onMouseLeave}
             disabled={disabled}
             name={name}
             type={type}
